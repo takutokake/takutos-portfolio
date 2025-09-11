@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>About - Takuto Portfolio</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Syne:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#111622] antialiased" style='font-family: "Inter", sans-serif;'>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0B101B]/80 backdrop-blur-md border-b border-[#242f47]/30 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-white">
+                    <img src="images/takuto-logo.png" alt="Takuto Logo" class="w-14 h-14">
+                    <a href="index.html" class="text-xl font-bold leading-tight tracking-tighter">takuto</a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="nav-link text-sm font-medium text-white/80 hover:text-[#00A9E2] transition-all duration-300">Home</a>
+                    <a href="work.html" class="nav-link text-sm font-medium text-white/80 hover:text-[#00A9E2] transition-all duration-300">Work</a>
+                    <a href="about.html" class="nav-link text-sm font-medium text-[#00A9E2] transition-all duration-300">About</a>
+                    <a href="contact.html" class="nav-link text-sm font-medium text-white/80 hover:text-[#00A9E2] transition-all duration-300">Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a class="cta-button bg-[#007CF0] text-white px-6 py-2 rounded-full font-bold hover:shadow-lg hover:shadow-[#007CF0]/40 transition-all duration-300" href="contact.html">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section py-20 pt-32 bg-[#111622] min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+                <div class="lg:col-span-2">
+                    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">About Me</h1>
+                    <p class="mt-6 text-lg leading-8 text-slate-300" style="font-family: 'Inter', sans-serif;">
+                        I'm Takuto Kakeda, a senior at the University of Southern California's Marshall School of Business, majoring in Business Administration with a minor in AI Application & Product Design. Originally from Japan and now based in Los Angeles, I've built my journey around connecting people, ideas, and communities through product management and entrepreneurship.
+                    </p>
+                    <p class="mt-4 text-lg leading-8 text-slate-300" style="font-family: 'Inter', sans-serif;">
+                        Growing up, I've always had a wide range of interests—ranging from startups to media, from technology to design. The common thread across all of them has been my passion for building experiences that bring people closer together. As President of ProductSC, USC's product management organization, I've helped hundreds of students explore PM through workshops, case competitions, and client projects.
+                    </p>
+                    <p class="mt-4 text-lg leading-8 text-slate-300" style="font-family: 'Inter', sans-serif;">
+                        When I'm not iterating on a product idea or refining a Figma mockup, you can usually find me rock climbing with friends, exploring LA's coffee shops, or diving into new music and beatboxing sessions.
+                    </p>
+                    <div class="mt-12">
+                        <h2 class="text-2xl font-bold tracking-tight text-white">Timeline</h2>
+                        <div class="timeline relative mt-8">
+                            <!-- Timeline items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8 lg:col-span-1">
+                    <div class="profile-card rounded-2xl bg-[#1A202C] p-6">
+                        <div class="flex flex-col items-center text-center">
+                            <img src="images/takuto-headshot.png" alt="Takuto Kakeda" class="profile-image w-32 h-32 rounded-full mb-4 object-cover border-4 border-gradient-to-br from-[#00A9E2] to-[#007CF0]">
+                            <p class="text-xl font-bold text-white">Takuto Kakeda</p>
+                            <p class="text-md text-slate-300">USC Marshall • Product Builder • Community Leader</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Education & Interests Section -->
+                    <div class="education-card rounded-2xl bg-[#1A202C] p-6 mb-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Education</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 bg-[#00A9E2] rounded-full"></div>
+                                <div>
+                                    <p class="text-white font-medium">University of Southern California</p>
+                                    <p class="text-sm text-slate-300">Marshall School of Business</p>
+                                    <p class="text-sm text-slate-400">B.A. Business Administration • Minor: AI Application & Product Design</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interests Section -->
+                    <div class="interests-card rounded-2xl bg-[#1A202C] p-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Beyond Work</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2 text-sm text-slate-300">
+                                <span class="text-[#00A9E2]">🧗</span> Rock Climbing
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-300">
+                                <span class="text-[#00A9E2]">☕</span> Coffee Exploration
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-300">
+                                <span class="text-[#00A9E2]">🎵</span> Music & Beatboxing
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-300">
+                                <span class="text-[#00A9E2]">🎨</span> Figma Design
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B101B] border-t border-[#242f47]/30 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-white">Takuto</h3>
+                <p class="text-sm text-slate-400">USC Marshall • Los Angeles, CA</p>
+            </div>
+            <div class="flex gap-4">
+                <a class="social-link" href="#">LinkedIn</a>
+                <a class="social-link" href="#">GitHub</a>
+                <a class="social-link" href="#">Medium</a>
+                <a class="social-link" href="#">Twitter</a>
+            </div>
+            <p class="text-sm text-slate-400">© 2024 Takuto. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>

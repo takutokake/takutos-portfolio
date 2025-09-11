@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Work - Takuto Portfolio</title>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Syne:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0D0D1B] antialiased" style='font-family: "Inter", sans-serif;'>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0B101B]/80 backdrop-blur-md border-b border-[#242f47]/30 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-white">
+                    <img src="images/takuto-logo.png" alt="Takuto Logo" class="w-14 h-14">
+                    <a href="index.html" class="text-xl font-bold leading-tight tracking-tighter">takuto</a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="nav-link text-sm font-medium text-white/80 hover:text-[#00A9E2] transition-all duration-300">Home</a>
+                    <a href="work.html" class="nav-link text-sm font-medium text-[#00A9E2] transition-all duration-300">Work</a>
+                    <a href="about.html" class="nav-link text-sm font-medium text-white/80 hover:text-[#00A9E2] transition-all duration-300">About</a>
+                    <a href="contact.html" class="nav-link text-sm font-medium text-white/80 hover:text-[#00A9E2] transition-all duration-300">Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a class="cta-button bg-[#007CF0] text-white px-6 py-2 rounded-full font-bold hover:shadow-lg hover:shadow-[#007CF0]/40 transition-all duration-300" href="contact.html">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Work Section -->
+    <section class="work-section py-20 pt-32 min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Main Header -->
+            <div class="text-center mb-20">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white" style="font-family: 'Syne', sans-serif;">Featured Projects</h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+                    Here are a few projects that reflect how I combine community, product, and design to create meaningful impact.
+                </p>
+            </div>
+            
+            <!-- Sticky Subnav -->
+            <div class="sticky-subnav">
+                <div class="subnav-links">
+                    <a href="#work-experience" class="subnav-link" data-section="work-experience">Work</a>
+                    <a href="#startup-projects" class="subnav-link" data-section="startup-projects">Startups</a>
+                    <a href="#community-building" class="subnav-link" data-section="community-building">Community</a>
+                </div>
+            </div>
+            
+            <!-- Work Experience Section -->
+            <div class="work-section-content" id="work-experience">
+                <div class="section-header">
+                    <div class="section-dot work"></div>
+                    <h3>Work Experience</h3>
+                </div>
+                <p class="section-subhead">Professional product roles in tech and media</p>
+                <div class="section-divider"></div>
+                <div class="projects-grid" id="work-projects-grid">
+                    <!-- Work projects will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Startup Projects Section -->
+            <div class="work-section-content" id="startup-projects">
+                <div class="section-header">
+                    <div class="section-dot startup"></div>
+                    <h3>Startup & Personal Projects</h3>
+                </div>
+                <p class="section-subhead">Things I've built and shipped</p>
+                <div class="section-divider"></div>
+                <div class="projects-grid" id="startup-projects-grid">
+                    <!-- Startup projects will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Community Building Section -->
+            <div class="work-section-content" id="community-building">
+                <div class="section-header">
+                    <div class="section-dot community"></div>
+                    <h3>Community Building</h3>
+                </div>
+                <p class="section-subhead">Creating spaces for people to grow together</p>
+                <div class="section-divider"></div>
+                <div class="projects-grid" id="community-projects-grid">
+                    <!-- Community projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B101B] border-t border-[#242f47]/30 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold text-white">Takuto</h3>
+                <p class="text-sm text-slate-400">Product Manager based in Los Angeles</p>
+            </div>
+            <div class="flex gap-4">
+                <a class="social-link" href="#">LinkedIn</a>
+                <a class="social-link" href="#">GitHub</a>
+                <a class="social-link" href="#">Medium</a>
+                <a class="social-link" href="#">Twitter</a>
+            </div>
+            <p class="text-sm text-slate-400">© 2024 Takuto. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
