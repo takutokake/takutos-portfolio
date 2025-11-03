@@ -607,26 +607,54 @@ function initializeTimeline() {
 function initializeContactForm() {
     const contactForm = document.getElementById('contact-form');
     const submitButton = document.querySelector('.submit-button');
+    const formStatus = document.getElementById('form-status');
+    const successMessage = formStatus.querySelector('.success-message');
+    const errorMessage = formStatus.querySelector('.error-message');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Create confetti effect
-            createConfetti(submitButton);
+            // Reset messages
+            formStatus.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
             
-            // Simulate form submission
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Update button state
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             
-            setTimeout(() => {
-                submitButton.textContent = 'Message Sent!';
-                setTimeout(() => {
+            // Send email
+            sendEmail(formData)
+                .then(() => {
+                    // Create confetti effect
+                    createConfetti(submitButton);
+                    
+                    // Show success message
+                    successMessage.classList.remove('hidden');
+                    submitButton.textContent = 'Message Sent!';
+                    
+                    // Reset form
+                    setTimeout(() => {
+                        submitButton.textContent = 'Send a Message';
+                        submitButton.disabled = false;
+                        contactForm.reset();
+                        formStatus.classList.add('hidden');
+                    }, 3000);
+                })
+                .catch(() => {
+                    // Show error message
+                    errorMessage.classList.remove('hidden');
                     submitButton.textContent = 'Send a Message';
                     submitButton.disabled = false;
-                    contactForm.reset();
-                }, 2000);
-            }, 1500);
+                });
         });
     }
     

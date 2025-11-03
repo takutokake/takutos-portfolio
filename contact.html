@@ -8,6 +8,7 @@
     <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Syne:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-[#0B101B] antialiased" style='font-family: "Inter", sans-serif;'>
@@ -54,26 +55,30 @@
                 
                 <form class="contact-form space-y-6 w-full max-w-lg mx-auto" id="contact-form">
                     <div class="input-bubble">
-                        <input class="input-field" placeholder="Your Name" type="text" required/>
+                        <input class="input-field" name="name" id="name" placeholder="Your Name" type="text" required/>
                     </div>
                     <div class="input-bubble">
-                        <input class="input-field" placeholder="Your Email" type="email" required/>
+                        <input class="input-field" name="email" id="email" placeholder="Your Email" type="email" required/>
                     </div>
                     <div class="input-bubble">
-                        <textarea class="input-field h-24 resize-none" placeholder="Your Message" required></textarea>
+                        <textarea class="input-field h-24 resize-none" name="message" id="message" placeholder="Your Message" required></textarea>
                     </div>
                     <div class="flex justify-center pt-4">
                         <button class="submit-button" type="submit">
                             Send a Message
                         </button>
                     </div>
+                    <div id="form-status" class="text-center hidden">
+                        <p class="text-green-500 success-message hidden">Message sent successfully!</p>
+                        <p class="text-red-500 error-message hidden">Failed to send message. Please try again.</p>
+                    </div>
                 </form>
                 
                 <div class="pt-12 space-y-6">
                     <h2 class="text-2xl font-bold text-[#00A9E2]">Find Me Online</h2>
                     <div class="flex justify-center items-center space-x-6">
-                        <a class="social-link" href="#">LinkedIn</a>
-                        <a class="social-link" href="#">GitHub</a>
+                        <a class="social-link" href="https://www.linkedin.com/in/takutok" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="social-link" href="https://github.com/takutokake" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <a class="social-link" href="#">Medium</a>
                         <a class="social-link" href="#">Twitter</a>
                     </div>
@@ -88,7 +93,7 @@
                             </div>
                             <div class="text-left">
                                 <h3 class="text-lg font-semibold text-white">Email</h3>
-                                <p class="text-slate-300">takuto@example.com</p>
+                                <p class="text-slate-300">kakeda@usc.edu</p>
                             </div>
                         </div>
                     </div>
@@ -122,20 +127,4 @@
     <!-- Footer -->
     <footer class="bg-[#0B101B] border-t border-[#242f47]/30 py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-                <h3 class="text-xl font-bold text-white">Takuto</h3>
-                <p class="text-sm text-slate-400">Product Manager based in Los Angeles</p>
-            </div>
-            <div class="flex gap-4">
-                <a class="social-link" href="#">LinkedIn</a>
-                <a class="social-link" href="#">GitHub</a>
-                <a class="social-link" href="#">Medium</a>
-                <a class="social-link" href="#">Twitter</a>
-            </div>
-            <p class="text-sm text-slate-400">© 2024 Takuto. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+            <div class="text-center md:text-lef
