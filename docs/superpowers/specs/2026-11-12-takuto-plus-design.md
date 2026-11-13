@@ -249,7 +249,7 @@ Applied as part of this work:
 
 ## Testing
 
-Automated: `node --test tests/` checks the catalog (every title, profile, row,
+Automated: `node --test tests/*.test.js` checks the catalog (every title, profile, row,
 match score, and logo file is present and valid) and the race planner (the
 pick always wins, never leads before the final stretch, and every horse's
 progress only moves forward).

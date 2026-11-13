@@ -442,7 +442,7 @@ Create `race-day.js`:
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --test tests/`
+Run: `node --test tests/*.test.js`
 Expected: PASS, all catalog and race tests, 0 failures.
 
 - [ ] **Step 5: Commit**
@@ -1109,7 +1109,7 @@ Append to `takuto-plus.css`:
 
 - [ ] **Step 5: Verify**
 
-Run: `node --check takuto-plus.js && node --test tests/`
+Run: `node --check takuto-plus.js && node --test tests/*.test.js`
 Expected: no syntax output; all tests pass.
 
 In a browser (clear `localStorage` first):
@@ -1354,7 +1354,7 @@ Append to `takuto-plus.css`:
 
 - [ ] **Step 3: Verify**
 
-Run: `node --check race-day.js && node --test tests/`
+Run: `node --check race-day.js && node --test tests/*.test.js`
 Expected: no syntax output; all tests still pass (the `window` guard keeps Node on the planner path).
 
 In a browser:
@@ -1880,7 +1880,7 @@ git commit -m "Update story and About copy to match the resume"
 
 - [ ] **Step 1: Automated checks**
 
-Run: `node --test tests/ && for f in catalog.js premium.js race-day.js takuto-plus.js guestbook.js; do node --check "$f"; done`
+Run: `node --test tests/*.test.js && for f in catalog.js premium.js race-day.js takuto-plus.js guestbook.js; do node --check "$f"; done`
 Expected: all tests pass; no syntax output.
 
 - [ ] **Step 2: Full manual pass**
