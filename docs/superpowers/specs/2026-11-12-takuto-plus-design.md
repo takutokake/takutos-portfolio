@@ -102,7 +102,7 @@ Six titles. Horse names are working names and can be changed in `catalog.js`.
 | Title | Horse | Silks |
 | --- | --- | --- |
 | HBO Max (Warner Bros. Discovery) | Max Discovery | `#8b7cf7` |
-| Kroot | Kroot Force | `#4cc9f0` |
+| Kroot | Kroot Force | `#7bc47f` |
 | ProductSC | Fight On Product | `#ff9e64` |
 | Hearst | Front Page Fury | `#f7768e` |
 | FEMO | Mentor Express | `#5eead4` |
@@ -169,8 +169,11 @@ Changes to existing files:
   so `takuto-plus.js` can fill and open it.
 
 Modules communicate through globals on `window` (`TakutoCatalog`,
-`TakutoOverlay`, `TakutoPlus`), loaded with plain `<script defer>` tags in
-dependency order. No modules or bundler.
+`TakutoOverlay`, `TakutoPlus`, `TakutoRace`), loaded with plain `<script>` tags
+at the end of `<body>` in dependency order. No modules or bundler.
+`catalog.js` and the race planning function in `race-day.js` also export
+through `module.exports` when loaded by Node, so they can be unit tested with
+`node --test`.
 
 ## Guestbook backend
 
@@ -236,12 +239,18 @@ Applied as part of this work:
 - About interests: horse racing, beatboxing, exploring cultures, cooking, group
   running, 2048 (replacing rock climbing and coffee).
 - Contact email: `takuto.kakeda@gmail.com` (replacing `kakeda@usc.edu`).
-- Timeline: 2025 Product Manager at Warner Bros. Discovery; 2026 founded Kroot.
+- Timeline, matching the resume: 2026 founded Kroot; 2025 Product Manager at
+  Warner Bros. Discovery (HBO Max); 2024 Hearst, Wellx.ai, Snap; 2023 President
+  of ProductSC and started Bizlang; 2020 founded FEMO.
 
 ## Testing
 
-No test framework exists in this project; verification is manual in a browser,
-at a desktop width and a 390px phone width:
+Automated: `node --test tests/` checks the catalog (every title, profile, row,
+match score, and logo file is present and valid) and the race planner (the
+pick always wins, never leads before the final stretch, and every horse's
+progress only moves forward).
+
+Manual, in a browser at a desktop width and a 390px phone width:
 
 1. Each of the four profiles shows its banner, rows, and match scores as listed.
 2. Reloading restores the saved profile; "Switch profile" returns to the picker.
@@ -257,12 +266,14 @@ at a desktop width and a 390px phone width:
    - A submitted review does not appear in the ticker.
    - After setting `approved = true` in the dashboard, it appears on reload.
    - Using the anon key with `curl`, selecting reviews returns only approved
-     rows, and update and delete requests are rejected.
+     rows; inserting a row with `approved: true` is rejected; update and delete
+     requests change nothing (re-selecting shows the same rows).
    - A submission with the honeypot filled is not stored.
 
 ## Inputs needed from Takuto
 
-- A Supabase account (free) to create the project; the setup is the SQL above.
-- Kroot logo (the other five logos are already in `images/`).
+- A Supabase project with the SQL above run in its SQL editor, plus its
+  project URL and publishable (anon) key.
+- Kroot logo: provided, saved as `images/kroot-logo.png`.
 - Optional: a horse-racing photo for the Race Day banner.
 - Sign-off on horse names and match scores, or replacements.
