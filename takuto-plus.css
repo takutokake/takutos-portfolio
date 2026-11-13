@@ -1,0 +1,26 @@
+/* Takuto+ — personalized Featured work */
+
+/* ---------- title page (overlay) ---------- */
+.overlay-banner {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--pc) 25%, transparent);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.overlay-banner[hidden] { display: none; }
+.overlay-episodes { margin-top: 26px; padding: 0; list-style: none; display: grid; gap: 10px; }
+.overlay-episodes li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 12px;
+    row-gap: 2px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+}
+.ep-num { grid-row: span 2; padding-top: 2px; color: var(--pc); font-weight: 700; font-size: 0.85rem; }
+.ep-metric { color: var(--ink-60); font-size: 0.9rem; }

@@ -6,58 +6,6 @@
     const $ = (sel, root = document) => root.querySelector(sel);
     const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-    /* ---------- project data ---------- */
-    const PROJECTS = {
-        wbd: {
-            kicker: "Product Intern · Warner Bros. Discovery · 2025",
-            title: "Personalization at HBO Max",
-            tags: ["Recommendations", "Experimentation", "Streaming"],
-            desc:
-                "At Warner Bros. Discovery I worked on HBO Max personalization — contributing to the design and analysis of a Teen Users rails algorithm and supporting experiments that sharpen content recommendations.\n\nThe work spanned data analysis, experiment design, and cross-functional collaboration with engineering and data science, with features now rolling out to improve recommendation accuracy at scale.",
-            stats: [
-                { n: "12M+", l: "users reached by shipped features" },
-                { n: "15%", l: "improvement in user engagement" },
-                { n: "1", l: "rails algorithm shaped end-to-end" },
-            ],
-        },
-        elevait: {
-            kicker: "Founder · Elevait · Now building",
-            title: "Elevait — discover what's next",
-            tags: ["AI", "0 → 1", "Career discovery"],
-            desc:
-                "Elevait is my current 0-to-1 project: an early-stage AI product built around this site's thesis — helping people discover and act on their next opportunity.\n\nRight now that means staying close to users, prototyping fast in Figma and code, and shipping weekly. More to share soon — if this space interests you, I'd love to talk.",
-            stats: [
-                { n: "0 → 1", l: "currently in build mode" },
-                { n: "Weekly", l: "shipping cadence" },
-                { n: "AI-first", l: "product architecture" },
-            ],
-        },
-        productsc: {
-            kicker: "President · ProductSC · USC",
-            title: "Rebuilding USC's product community",
-            tags: ["Community", "Curriculum design", "Leadership"],
-            desc:
-                "As President of ProductSC, USC's product management organization, I revitalized the club around three original curricula: Compass (PM fundamentals), Catalyst (advanced skills), and a Client Program pairing students with real companies.\n\nBeyond the curriculum, I built partnerships across schools and companies and turned ProductSC into a launchpad — helping hundreds of students explore product and land their first PM roles.",
-            stats: [
-                { n: "40×", l: "membership growth" },
-                { n: "50+", l: "students placed in PM internships" },
-                { n: "10+", l: "company partnerships" },
-            ],
-        },
-        femo: {
-            kicker: "Founder · FEMO · Nonprofit",
-            title: "Foreign English Mentorship Organization",
-            tags: ["Mentorship", "Cross-cultural", "Nonprofit"],
-            desc:
-                "I founded FEMO to connect international students with English-speaking mentors — a structured mentorship program built around cross-cultural exchange, language growth, and genuine community.\n\nThe hardest problems were human ones: mentor quality, keeping the personal touch while scaling, and measuring something as soft as confidence. The results made it worth it.",
-            stats: [
-                { n: "100+", l: "mentor–mentee pairs" },
-                { n: "85%", l: "report improved confidence" },
-                { n: "1", l: "community across two cultures" },
-            ],
-        },
-    };
-
     /* ---------- hero word stagger ---------- */
     $$(".hero-title .line").forEach((line) => {
         $$(".w", line).forEach((w, i) => w.style.setProperty("--i", i));
@@ -166,39 +114,43 @@
     const overlayCard = $("#project-overlay-card");
     let lastTrigger = null;
 
-    const fillOverlay = (id, accent) => {
-        const p = PROJECTS[id];
-        if (!p) return false;
-        overlayCard.style.setProperty("--pc", accent);
-        $("#overlay-band").style.setProperty("--pc", accent);
-        $("#overlay-kicker").textContent = p.kicker;
-        $("#overlay-title").textContent = p.title;
-        $("#overlay-desc").textContent = p.desc;
-        $("#overlay-tags").innerHTML = p.tags
-            .map((t) => `<span class="tag">${t}</span>`)
-            .join("");
-        $("#overlay-stats").innerHTML = p.stats
-            .map(
-                (s) =>
-                    `<div class="overlay-stat"><strong>${s.n}</strong><span>${s.l}</span></div>`
-            )
-            .join("");
-        return true;
+    const make = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text != null) node.textContent = text;
+        return node;
     };
 
-    const openProject = (card) => {
-        const accent = getComputedStyle(card).getPropertyValue("--pc").trim() || "#8b7cf7";
-        if (!fillOverlay(card.dataset.project, accent)) return;
+    const fillOverlay = (d) => {
+        overlayCard.style.setProperty("--pc", d.accent);
+        $("#overlay-band").style.setProperty("--pc", d.accent);
+        const banner = $("#overlay-banner");
+        banner.textContent = d.banner || "";
+        banner.hidden = !d.banner;
+        $("#overlay-kicker").textContent = d.kicker;
+        $("#overlay-title").textContent = d.title;
+        $("#overlay-desc").textContent = d.desc;
+        $("#overlay-tags").replaceChildren(...d.tags.map((t) => make("span", "tag", t)));
+        $("#overlay-episodes").replaceChildren(
+            ...d.episodes.map((e, i) => {
+                const li = make("li");
+                li.append(make("span", "ep-num", `E${i + 1}`), make("strong", null, e.title), make("span", "ep-metric", e.metric));
+                return li;
+            })
+        );
+    };
 
-        lastTrigger = card;
+    const openOverlay = (data, trigger) => {
+        fillOverlay(data);
+        lastTrigger = trigger;
         overlay.hidden = false;
         document.body.classList.add("no-scroll");
 
-        // FLIP: animate from the clicked card's rect to the dialog's rect
+        // FLIP: animate from the trigger's rect to the dialog's rect
         requestAnimationFrame(() => {
             overlay.classList.add("open");
-            if (!reduceMotion && overlayCard.animate) {
-                const from = card.getBoundingClientRect();
+            if (!reduceMotion && overlayCard.animate && trigger) {
+                const from = trigger.getBoundingClientRect();
                 const to = overlayCard.getBoundingClientRect();
                 const sx = from.width / to.width;
                 const sy = from.height / to.height;
@@ -216,15 +168,16 @@
         });
     };
 
-    const closeProject = () => {
+    const closeOverlay = () => {
+        const target = lastTrigger && lastTrigger.isConnected ? lastTrigger : null;
         const finish = () => {
             overlay.classList.remove("open");
             overlay.hidden = true;
             document.body.classList.remove("no-scroll");
-            if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+            if (target) target.focus({ preventScroll: true });
         };
-        if (!reduceMotion && overlayCard.animate && lastTrigger) {
-            const to = lastTrigger.getBoundingClientRect();
+        if (!reduceMotion && overlayCard.animate && target) {
+            const to = target.getBoundingClientRect();
             const from = overlayCard.getBoundingClientRect();
             const sx = to.width / from.width;
             const sy = to.height / from.height;
@@ -245,15 +198,12 @@
         }
     };
 
-    $$(".work-card").forEach((card) =>
-        card.addEventListener("click", () => openProject(card))
-    );
-    $$("[data-close]", overlay).forEach((el) =>
-        el.addEventListener("click", closeProject)
-    );
+    $$("[data-close]", overlay).forEach((el) => el.addEventListener("click", closeOverlay));
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !overlay.hidden) closeProject();
+        if (e.key === "Escape" && !overlay.hidden) closeOverlay();
     });
+
+    window.TakutoOverlay = { open: openOverlay, close: closeOverlay };
 
     /* ---------- copy email ---------- */
     const copyBtn = $("#copy-email");
