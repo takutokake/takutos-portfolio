@@ -59,16 +59,19 @@
     width: 120px;
     height: 120px;
     border: 3px solid transparent;
-    border-radius: 22px;
-    background: linear-gradient(145deg, var(--pc), color-mix(in srgb, var(--pc) 35%, var(--bg)));
-    font-size: 52px;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--pc) 48%, #14161c);
+    color: #f6f3ec;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: transform 0.3s var(--ease-spring), border-color 0.2s;
 }
+.tp-avatar svg { width: 56px; height: 56px; display: block; }
 .tp-profile:hover .tp-avatar,
 .tp-profile:focus-visible .tp-avatar { transform: translateY(-4px) scale(1.04); border-color: var(--ink); }
 .tp-profile-label { font-weight: 600; font-size: 1.05rem; }
 .tp-profile-blurb { color: var(--ink-60); font-size: 0.85rem; }
-.tp-avatar-sm { width: 30px; height: 30px; border: 0; border-radius: 8px; font-size: 16px; }
+.tp-avatar-sm { width: 28px; height: 28px; border: 0; border-radius: 7px; box-shadow: none; }
+.tp-avatar-sm svg { width: 16px; height: 16px; }
 
 .tp-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; min-height: 420px; color: var(--ink-60); }
 .tp-loader-ring {
@@ -201,7 +204,8 @@
     .tp-banner { grid-template-columns: 1fr; padding: 22px; }
     .tp-banner-art { max-width: 200px; }
     .tp-profile { width: 120px; }
-    .tp-avatar { width: 96px; height: 96px; font-size: 42px; }
+    .tp-avatar { width: 96px; height: 96px; }
+    .tp-avatar svg { width: 46px; height: 46px; }
     .tp-poster { flex-basis: 180px; }
 }
 

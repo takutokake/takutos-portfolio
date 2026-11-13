@@ -115,7 +115,6 @@
             recruiter: {
                 label: "Recruiter",
                 blurb: "Impact first",
-                icon: "💼",
                 accent: "#8b7cf7",
                 featured: "hbo",
                 rows: [
@@ -127,7 +126,6 @@
             founder: {
                 label: "Founder",
                 blurb: "0 → 1 work",
-                icon: "🚀",
                 accent: "#7bc47f",
                 featured: "kroot",
                 rows: [
@@ -139,7 +137,6 @@
             community: {
                 label: "Community",
                 blurb: "People and programs",
-                icon: "🤝",
                 accent: "#ff9e64",
                 featured: "productsc",
                 rows: [
@@ -151,7 +148,6 @@
             curious: {
                 label: "Just curious",
                 blurb: "The fun side",
-                icon: "✨",
                 accent: "#5eead4",
                 featured: "race",
                 rows: [

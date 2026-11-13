@@ -27,7 +27,7 @@ test("every title is complete and its logo exists", () => {
 test("profiles show every title once with valid match scores", () => {
     assert.deepEqual(Object.keys(C.profiles), ["recruiter", "founder", "community", "curious"]);
     for (const [pid, p] of Object.entries(C.profiles)) {
-        assert.ok(p.label && p.blurb && p.icon && p.accent, `${pid} display fields`);
+        assert.ok(p.label && p.blurb && p.accent, `${pid} display fields`);
         assert.ok(p.featured === "race" || TITLE_IDS.includes(p.featured), `${pid}.featured`);
         assert.equal(p.rows.length, 2, `${pid} has two rows`);
         const shown = p.rows.flatMap((r) => r.items);

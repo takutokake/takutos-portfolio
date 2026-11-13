@@ -28,10 +28,20 @@
         img.loading = "lazy";
         return img;
     };
-    const avatar = (p, className = "tp-avatar") => {
-        const a = el("span", className, p.icon);
-        a.style.setProperty("--pc", p.accent);
+    // Drawn marks, one per profile. Same stroke, same size, no emoji.
+    const MARKS = {
+        recruiter: `<svg viewBox="0 0 32 32" fill="none"><path d="M6.5 10h8.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><path d="M18.2 10.4 20 12.2l4-4.2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 16h19M6.5 22h19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>`,
+        founder: `<svg viewBox="0 0 32 32" fill="none"><circle cx="11" cy="16.5" r="5.25" stroke="currentColor" stroke-width="1.75"/><path d="M19.4 12.2 22 9.8v12.7M19.2 22.5h5.6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        community: `<svg viewBox="0 0 32 32" fill="none"><path d="M5 23.5c1.6-7 5.6-10.8 11-10.8s9.4 3.8 11 10.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><circle cx="9.2" cy="12.2" r="1.7" fill="currentColor"/><circle cx="16" cy="9" r="1.95" fill="currentColor"/><circle cx="22.8" cy="12.2" r="1.7" fill="currentColor"/></svg>`,
+        curious: `<svg viewBox="0 0 32 32" fill="none"><path d="M7.5 12.5h17v2.15a2.15 2.15 0 0 0 0 4.2V21h-17v-2.15a2.15 2.15 0 0 0 0-4.2v-2.15Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M16 14.2v4.2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="1.1 1.7"/></svg>`,
+    };
+    const avatar = (id, className = "tp-avatar") => {
+        const a = el("span", className);
+        a.style.setProperty("--pc", C.profiles[id].accent);
         a.setAttribute("aria-hidden", "true");
+        const tpl = document.createElement("template");
+        tpl.innerHTML = MARKS[id];
+        a.append(tpl.content);
         return a;
     };
 
@@ -152,7 +162,7 @@
         const p = C.profiles[id];
         profileId = id;
         const who = el("p", "tp-bar-who");
-        who.append(avatar(p, "tp-avatar tp-avatar-sm"), `Watching as ${p.label}`);
+        who.append(avatar(id, "tp-avatar tp-avatar-sm"), `Watching as ${p.label}`);
         const sw = button("tp-switch", "Switch profile");
         sw.addEventListener("click", () => {
             storage.clear();
@@ -180,7 +190,7 @@
         const grid = el("div", "tp-profiles");
         for (const [id, p] of Object.entries(C.profiles)) {
             const b = button("tp-profile");
-            b.append(avatar(p), el("span", "tp-profile-label", p.label), el("span", "tp-profile-blurb", p.blurb));
+            b.append(avatar(id), el("span", "tp-profile-label", p.label), el("span", "tp-profile-blurb", p.blurb));
             b.addEventListener("click", () => choose(id));
             grid.append(b);
         }
