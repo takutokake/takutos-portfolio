@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/about(\\.html)?", "destination": "/#about", "permanent": false },
+    { "source": "/contact(\\.html)?", "destination": "/#contact", "permanent": false },
+    { "source": "/work(\\.html)?", "destination": "/#work", "permanent": false },
+    { "source": "/(warner-bros|snap-inc|king-features|homie|femo|bizlang|productsc)(\\.html)?", "destination": "/#work", "permanent": false }
+  ]
+}
