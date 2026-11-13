@@ -1749,7 +1749,134 @@ git commit -m "Bring homepage content in line with the current resume"
 
 ---
 
-### Task 8: Final verification and push
+### Task 8: Story and About copy
+
+**Files:**
+- Modify: `index.html` (story chapters, Current focus card 02, About text)
+
+Every number below comes from the resume. Replace each block exactly.
+
+- [ ] **Step 1: Chapter 01, Discover**
+
+Replace the `chapter-copy` paragraph and `chapter-stats` of `#discover` with:
+
+```html
+                    <p class="chapter-copy reveal d-2">
+                        Every product starts with curiosity. I've chased it through an AR
+                        horse-racing lens at Snap, hospice clients' scheduling pain at Hearst,
+                        and kids' viewing data at HBO&nbsp;Max — learning what people actually
+                        want before deciding what to build.
+                    </p>
+                    <div class="chapter-stats reveal d-3">
+                        <span class="stat-chip">5 A/B tests across 12M+ users</span>
+                        <span class="stat-chip">4 product roles</span>
+                    </div>
+```
+
+- [ ] **Step 2: Chapter 02, Build**
+
+Replace the `chapter-copy` paragraph and `chapter-stats` of `#build` with:
+
+```html
+                    <p class="chapter-copy reveal d-2">
+                        Ideas are cheap — shipping is the craft. I founded Kroot, a recruiting
+                        OS for students; built Bizlang, an AI tool that teaches workplace
+                        jargon; and ship discovery features for millions of HBO&nbsp;Max viewers.
+                    </p>
+                    <div class="chapter-stats reveal d-3">
+                        <span class="stat-chip">3 startups built</span>
+                        <span class="stat-chip">Features live for 12M+ users</span>
+                    </div>
+```
+
+- [ ] **Step 3: Chapter 03, Connect**
+
+Replace the `chapter-copy` paragraph and `chapter-stats` of `#connect` with:
+
+```html
+                    <p class="chapter-copy reveal d-2">
+                        Products are people. As President of ProductSC I grew USC's product
+                        community from 5 to 200+ members around three original curricula, and
+                        through FEMO I built an English mentorship program across 20 universities
+                        in 4 countries — because the best things I've built are rooms where
+                        people grow.
+                    </p>
+                    <div class="chapter-stats reveal d-3">
+                        <span class="stat-chip">40× community growth</span>
+                        <span class="stat-chip">400+ FEMO volunteers</span>
+                    </div>
+```
+
+- [ ] **Step 4: Chapter 04, Create Opportunity**
+
+Replace the `chapter-copy` paragraph and `chapter-stats` of `#opportunity` with:
+
+```html
+                    <p class="chapter-copy reveal d-2">
+                        Discovery, building, and community only matter if they open doors.
+                        200+ Tobitate! scholars ready to study abroad. Students tracking every
+                        application in one place with Kroot. That's the product I care about
+                        most — and the reason for everything below.
+                    </p>
+                    <div class="chapter-stats reveal d-3">
+                        <span class="stat-chip">200+ scholars supported</span>
+                        <span class="stat-chip">Partners: Amazon, Disney, Riot Games</span>
+                    </div>
+```
+
+- [ ] **Step 5: Current focus card 02**
+
+Replace:
+
+```html
+                    <p>Exploring how AI reshapes product craft — prototyping in Figma and code, and pressure-testing ideas from my AI Application &amp; Product Design minor.</p>
+```
+
+with:
+
+```html
+                    <p>Exploring how AI reshapes product craft — prototyping in Figma, Cursor, and Claude Code, and shipping LLM features like the teen title classifier at HBO&nbsp;Max.</p>
+```
+
+- [ ] **Step 6: About text**
+
+Replace the `about-lede` paragraph with:
+
+```html
+                    <p class="about-lede reveal d-2">
+                        I'm a product builder from Japan, based in Los Angeles. I studied Business
+                        Administration (Business Analytics) at USC Marshall, with a minor in AI
+                        Applications + Computer Programming.
+                    </p>
+```
+
+In the first `about-copy` paragraph, replace:
+
+```html
+                        product internships at Snap, Hearst, and Warner Bros. Discovery; startups
+                        like BizLang and Homie; and communities like ProductSC and FEMO. The common
+```
+
+with:
+
+```html
+                        product work at Snap, Wellx.ai, Hearst, and Warner Bros. Discovery; startups
+                        like Kroot and Bizlang; and communities like ProductSC and FEMO. The common
+```
+
+- [ ] **Step 7: Verify and commit**
+
+Run: `rg -n "Homie|50\+ customer|50\+ PM|85%|100\+|Product Design minor|internships at" index.html`
+Expected: no matches.
+
+```bash
+git add index.html
+git commit -m "Update story and About copy to match the resume"
+```
+
+---
+
+### Task 9: Final verification and push
 
 - [ ] **Step 1: Automated checks**
 

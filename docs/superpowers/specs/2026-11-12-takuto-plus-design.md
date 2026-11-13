@@ -239,6 +239,10 @@ Applied as part of this work:
 - About interests: horse racing, beatboxing, exploring cultures, cooking, group
   running, 2048 (replacing rock climbing and coffee).
 - Contact email: `takuto.kakeda@gmail.com` (replacing `kakeda@usc.edu`).
+- Story chapters, Current focus card 02, and About text: replace numbers and
+  projects not on the resume (Homie, "50+ customer interviews", "50+ PM
+  placements", "85% report new confidence", "100+ mentor pairs") with resume
+  facts, and describe the minor as "AI Applications + Computer Programming".
 - Timeline, matching the resume: 2026 founded Kroot; 2025 Product Manager at
   Warner Bros. Discovery (HBO Max); 2024 Hearst, Wellx.ai, Snap; 2023 President
   of ProductSC and started Bizlang; 2020 founded FEMO.
