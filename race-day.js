@@ -37,5 +37,118 @@
         return;
     }
 
-    window.TakutoRace = { planRace };
+    const RACE_MS = 10000;
+    const HORSE_PX = 32;
+    const PLACES = ["1st", "2nd", "3rd", "4th", "5th", "6th"];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const el = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text != null) node.textContent = text;
+        return node;
+    };
+    const button = (className, text) => {
+        const b = el("button", className, text);
+        b.type = "button";
+        return b;
+    };
+    const position = (p) => `calc(${(p * 100).toFixed(2)}% - ${(p * HORSE_PX).toFixed(1)}px)`;
+
+    const mount = (container, { onBack }) => {
+        const C = window.TakutoCatalog;
+        const ids = Object.keys(C.titles);
+        let running = false;
+
+        const wrap = el("div", "race");
+        const back = button("tp-switch", "← Back to home");
+        back.addEventListener("click", onBack);
+        const head = el("div", "race-head");
+        head.append(el("span", "race-live", "Live"), el("h3", "race-title", "Race Day"), back);
+
+        const prompt = el("p", "race-prompt", "Pick your horse.");
+        const status = el("p", "race-status");
+        status.setAttribute("aria-live", "polite");
+        const again = button("btn btn-ghost race-again", "Race again");
+        again.hidden = true;
+
+        const lanes = ids.map((id, i) => {
+            const t = C.titles[id];
+            const lane = el("div", "race-lane");
+            lane.style.setProperty("--pc", t.accent);
+            const place = el("span", "race-place");
+            const pick = button("race-pick");
+            pick.append(
+                el("span", "race-gate", String(i + 1)),
+                el("strong", "race-horse-name", t.horse.name),
+                place,
+                el("span", "race-form", `${t.name} · ${t.horse.form}`)
+            );
+            const horse = el("span", "race-horse", "🏇");
+            horse.setAttribute("aria-hidden", "true");
+            const run = el("div", "race-run");
+            run.append(horse, el("span", "race-finish"));
+            lane.append(pick, run);
+            return { id, lane, pick, place, horse };
+        });
+        const track = el("div", "race-track");
+        track.append(...lanes.map((l) => l.lane));
+
+        const finish = (plan) => {
+            if (!wrap.isConnected) return;
+            plan.order.forEach((id, i) => {
+                const l = lanes.find((x) => x.id === id);
+                l.horse.getAnimations().forEach((a) => a.cancel());
+                l.horse.style.left = position(plan.frames[id][plan.frames[id].length - 1]);
+                l.place.textContent = PLACES[i];
+            });
+            const winner = lanes.find((l) => l.id === plan.order[0]);
+            winner.lane.classList.add("is-winner");
+            const t = C.titles[winner.id];
+            status.textContent = `${t.horse.name} wins! Here's the ${t.name} story.`;
+            again.hidden = false;
+            setTimeout(() => {
+                if (wrap.isConnected) window.TakutoPlus.openTitle(winner.id, again, { winner: true });
+            }, reduceMotion ? 0 : 700);
+        };
+
+        const start = (id) => {
+            if (running) return;
+            running = true;
+            lanes.forEach((l) => (l.pick.disabled = true));
+            lanes.find((l) => l.id === id).lane.classList.add("is-pick");
+            prompt.textContent = `You picked ${C.titles[id].horse.name}. And they're off!`;
+            const plan = planRace(ids, id);
+            if (reduceMotion || !Element.prototype.animate) return finish(plan);
+            const runs = lanes.map((l) =>
+                l.horse.animate(
+                    plan.frames[l.id].map((p) => ({ left: position(p) })),
+                    { duration: RACE_MS, easing: "linear", fill: "forwards" }
+                )
+            );
+            Promise.all(runs.map((a) => a.finished)).then(() => finish(plan), () => {});
+        };
+
+        lanes.forEach((l) => l.pick.addEventListener("click", () => start(l.id)));
+
+        again.addEventListener("click", () => {
+            running = false;
+            lanes.forEach((l) => {
+                l.pick.disabled = false;
+                l.lane.classList.remove("is-pick", "is-winner");
+                l.horse.style.left = "";
+                l.place.textContent = "";
+            });
+            prompt.textContent = "Pick your horse.";
+            status.textContent = "";
+            again.hidden = true;
+            lanes[0].pick.focus();
+        });
+
+        wrap.append(head, el("p", "race-intro", C.race.intro), prompt, track, status, again);
+        container.append(wrap);
+        lanes[0].pick.focus({ preventScroll: true });
+    };
+
+    window.TakutoRace = { planRace, mount };
 })();
