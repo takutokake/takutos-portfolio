@@ -59,6 +59,7 @@
         const C = window.TakutoCatalog;
         const ids = Object.keys(C.titles);
         let running = false;
+        let winnerTimer = null;
 
         const wrap = el("div", "race");
         const back = button("tp-switch", "← Back to home");
@@ -98,7 +99,7 @@
             if (!wrap.isConnected) return;
             plan.order.forEach((id, i) => {
                 const l = lanes.find((x) => x.id === id);
-                l.horse.getAnimations().forEach((a) => a.cancel());
+                l.horse.getAnimations?.().forEach((a) => a.cancel());
                 l.horse.style.left = position(plan.frames[id][plan.frames[id].length - 1]);
                 l.place.textContent = PLACES[i];
             });
@@ -107,7 +108,7 @@
             const t = C.titles[winner.id];
             status.textContent = `${t.horse.name} wins! Here's the ${t.name} story.`;
             again.hidden = false;
-            setTimeout(() => {
+            winnerTimer = setTimeout(() => {
                 if (wrap.isConnected) window.TakutoPlus.openTitle(winner.id, again, { winner: true });
             }, reduceMotion ? 0 : 700);
         };
@@ -132,6 +133,7 @@
         lanes.forEach((l) => l.pick.addEventListener("click", () => start(l.id)));
 
         again.addEventListener("click", () => {
+            clearTimeout(winnerTimer);
             running = false;
             lanes.forEach((l) => {
                 l.pick.disabled = false;

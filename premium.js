@@ -112,6 +112,7 @@
     /* ---------- expanding project overlay (FLIP) ---------- */
     const overlay = $("#project-overlay");
     const overlayCard = $("#project-overlay-card");
+    const background = [navWrap, $("main")].filter(Boolean);
     let lastTrigger = null;
 
     const make = (tag, className, text) => {
@@ -144,6 +145,7 @@
         fillOverlay(data);
         lastTrigger = trigger;
         overlay.hidden = false;
+        background.forEach((node) => node.toggleAttribute("inert", true));
         document.body.classList.add("no-scroll");
 
         // FLIP: animate from the trigger's rect to the dialog's rect
@@ -169,12 +171,15 @@
     };
 
     const closeOverlay = () => {
+        if (overlay.hidden) return;
         const target = lastTrigger && lastTrigger.isConnected ? lastTrigger : null;
         const finish = () => {
             overlay.classList.remove("open");
             overlay.hidden = true;
+            background.forEach((node) => node.toggleAttribute("inert", false));
             document.body.classList.remove("no-scroll");
-            if (target) target.focus({ preventScroll: true });
+            (target || $("#work-title"))?.focus({ preventScroll: true });
+            lastTrigger = null;
         };
         if (!reduceMotion && overlayCard.animate && target) {
             const to = target.getBoundingClientRect();
