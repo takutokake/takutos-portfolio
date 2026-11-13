@@ -15,14 +15,14 @@
 
     const C = window.TakutoCatalog;
     const root = document.getElementById("tp-guestbook");
-    if (!C || !root) return;
+    const configured = Boolean(SUPABASE_URL && SUPABASE_KEY);
+    if (!C || !root || !configured) return;
     root.hidden = false;
 
     const form = root.querySelector("#tp-review-form");
     const status = root.querySelector("#tp-review-status");
     const track = root.querySelector("#tp-ticker-track");
     const submit = form.querySelector('button[type="submit"]');
-    const configured = Boolean(SUPABASE_URL && SUPABASE_KEY);
 
     const headers = () => {
         const h = { apikey: SUPABASE_KEY, "Content-Type": "application/json" };
@@ -59,7 +59,6 @@
     };
 
     const load = async () => {
-        if (!configured) return renderTicker(C.sampleReviews);
         try {
             const res = await fetch(
                 `${SUPABASE_URL}/rest/v1/reviews?select=name,location,note&order=created_at.desc&limit=30`,
@@ -101,7 +100,6 @@
             build_next: text("build_next") || null,
         };
         if (!review.name || !review.note) return say("Add your name and a review first.", true);
-        if (!configured) return say(FAILED, true);
 
         submit.disabled = true;
         try {
