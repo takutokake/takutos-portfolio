@@ -170,6 +170,26 @@
                     <article class="tp-fallback-card"><img src="images/bizlang-website-logo.png" alt="Bizlang logo"/><h3>Bizlang</h3><p>Co-founder. An AI tool that teaches workplace jargon to non-native English speakers.</p></article>
                 </div>
             </div>
+            <div class="tp-guestbook" id="tp-guestbook" hidden>
+                <div class="tp-guestbook-head">
+                    <h3>Leave a review</h3>
+                    <p>Tell me where you're from, what you thought, or what I should build next.</p>
+                </div>
+                <div class="tp-ticker" tabindex="0" aria-label="Visitor reviews">
+                    <ul class="tp-ticker-track" id="tp-ticker-track"></ul>
+                </div>
+                <form class="tp-review-form glass" id="tp-review-form">
+                    <label class="tp-field">Name<input name="name" required maxlength="40" autocomplete="name"/></label>
+                    <label class="tp-field">Where you're from<input name="location" maxlength="40" placeholder="Optional"/></label>
+                    <label class="tp-field tp-field-wide">Your review<textarea name="note" required maxlength="200" rows="3"></textarea></label>
+                    <label class="tp-field tp-field-wide">What should Takuto build next?<input name="build_next" maxlength="120" placeholder="Optional"/></label>
+                    <div class="tp-hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"/></label></div>
+                    <div class="tp-review-actions">
+                        <button class="btn btn-primary" type="submit"><span>Post review</span></button>
+                        <p class="tp-review-status" id="tp-review-status" role="status"></p>
+                    </div>
+                </form>
+            </div>
         </section>
 
         <!-- ============ CURRENT FOCUS ============ -->
@@ -299,5 +319,6 @@
     <script src="premium.js"></script>
     <script src="race-day.js"></script>
     <script src="takuto-plus.js"></script>
+    <script src="guestbook.js"></script>
 </body>
 </html>
