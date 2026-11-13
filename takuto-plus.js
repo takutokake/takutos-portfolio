@@ -21,10 +21,10 @@
         b.type = "button";
         return b;
     };
-    const logo = (t) => {
+    const logo = (t, alt = `${t.name} logo`) => {
         const img = el("img");
         img.src = t.logo;
-        img.alt = `${t.name} logo`;
+        img.alt = alt;
         img.loading = "lazy";
         return img;
     };
@@ -73,7 +73,7 @@
         b.style.setProperty("--pc", t.accent);
         b.setAttribute("aria-haspopup", "dialog");
         const art = el("span", "tp-poster-art");
-        art.append(logo(t));
+        art.append(logo(t, ""));
         b.append(art, el("span", "tp-poster-name", t.name), el("span", "tp-poster-role", t.role), el("span", "tp-match", `${p.match[id]}% match`));
         b.addEventListener("click", () => openTitle(id, b));
         return b;
@@ -130,6 +130,7 @@
             play.addEventListener("click", showRace);
         } else {
             play.setAttribute("aria-haspopup", "dialog");
+            play.setAttribute("aria-label", `Play ${t.name}`);
             play.addEventListener("click", () => openTitle(p.featured, play));
         }
         const actions = el("div", "tp-banner-actions");

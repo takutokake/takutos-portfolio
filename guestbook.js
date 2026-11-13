@@ -52,6 +52,7 @@
         if (!reviews.length) return track.replaceChildren();
         const copy = [];
         while (copy.length < MIN_LOOP_CARDS) copy.push(...reviews);
+        track.style.setProperty("--tp-ticker-duration", `${copy.length * 6}s`);
         track.replaceChildren(
             ...copy.map((r, i) => reviewItem(r, i >= reviews.length)),
             ...copy.map((r) => reviewItem(r, true))

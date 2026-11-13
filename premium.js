@@ -135,7 +135,9 @@
         $("#overlay-episodes").replaceChildren(
             ...d.episodes.map((e, i) => {
                 const li = make("li");
-                li.append(make("span", "ep-num", `E${i + 1}`), make("strong", null, e.title), make("span", "ep-metric", e.metric));
+                const num = make("span", "ep-num", `E${i + 1}`);
+                num.setAttribute("aria-hidden", "true");
+                li.append(num, make("strong", null, e.title), make("span", "ep-metric", e.metric));
                 return li;
             })
         );
