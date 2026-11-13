@@ -8,6 +8,7 @@
     const SUPABASE_KEY = "";
 
     const COOLDOWN_MS = 60000;
+    const MIN_LOOP_CARDS = 6;
     const COOLDOWN_KEY = "takutoPlus.lastReview";
     const THANKS = "Thanks! Your review will show up once Takuto approves it.";
     const FAILED = "Couldn't send that. Try again in a moment.";
@@ -46,10 +47,14 @@
         return li;
     };
 
+    // One copy must be at least as wide as the widest ticker for the -50% loop to stay seamless.
     const renderTicker = (reviews) => {
+        if (!reviews.length) return track.replaceChildren();
+        const copy = [];
+        while (copy.length < MIN_LOOP_CARDS) copy.push(...reviews);
         track.replaceChildren(
-            ...reviews.map((r) => reviewItem(r, false)),
-            ...reviews.map((r) => reviewItem(r, true))
+            ...copy.map((r, i) => reviewItem(r, i >= reviews.length)),
+            ...copy.map((r) => reviewItem(r, true))
         );
     };
 
@@ -74,6 +79,8 @@
     const markSent = () => {
         try { localStorage.setItem(COOLDOWN_KEY, String(Date.now())); } catch { /* private mode */ }
     };
+
+    form.addEventListener("input", () => say(""));
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
