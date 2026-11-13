@@ -1408,6 +1408,10 @@ create policy "public can submit unapproved reviews"
 create policy "public can read approved reviews"
   on public.reviews for select to anon
   using (approved = true);
+
+revoke all on public.reviews from anon;
+grant insert (name, location, note, build_next) on public.reviews to anon;
+grant select (name, location, note, created_at) on public.reviews to anon;
 ```
 
 Expected: "Success. No rows returned."
@@ -1887,9 +1891,12 @@ Expected: all tests pass; no syntax output.
 
 At a desktop width and a 390px phone width, run the spec's manual checklist (items 1–8), including keyboard-only use (Tab, Enter, Space, Escape) through the picker, rows, title page, Race Day, and guestbook. Confirm the browser console shows no errors.
 
-- [ ] **Step 3: Push**
+- [ ] **Step 3: Merge and push**
+
+Merge `takuto-plus` into `main`, then push `main`. Pushing `main` deploys the site via Vercel.
 
 ```bash
+git switch main && git merge --no-ff takuto-plus
 git push origin main
 ```
 

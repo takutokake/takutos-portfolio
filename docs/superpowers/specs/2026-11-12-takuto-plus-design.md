@@ -199,6 +199,10 @@ create policy "public can submit unapproved reviews"
 create policy "public can read approved reviews"
   on public.reviews for select to anon
   using (approved = true);
+
+revoke all on public.reviews from anon;
+grant insert (name, location, note, build_next) on public.reviews to anon;
+grant select (name, location, note, created_at) on public.reviews to anon;
 ```
 
 - No update or delete policy for `anon`, so the public key cannot change or
