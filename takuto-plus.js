@@ -82,6 +82,7 @@
         window.TakutoOverlay.open(
             {
                 accent: p.accent,
+                art: logoArt(t),
                 num: raceNumber(id),
                 banner: winner ? `Winner's circle · ${t.horse.name}` : "",
                 kicker: `${t.role} · ${t.org} · ${t.dates}`,
@@ -118,6 +119,22 @@
         return a;
     };
 
+    const logoArt = (t) => {
+        const a = el("span", "tp-art tp-art-logo");
+        a.style.setProperty("--logo-bg", t.logoBg);
+        a.style.setProperty("--logo-zoom", t.logoZoom || 1);
+        if (t.logo) {
+            const img = el("img");
+            img.src = t.logo;
+            img.alt = "";
+            img.loading = "lazy";
+            a.append(img);
+        } else {
+            a.append(el("span", "tp-wordmark", t.name));
+        }
+        return a;
+    };
+
     const liveCorner = (text) => {
         const c = el("span", "tp-art-corner");
         c.append(el("span", "tp-live-dot"), text);
@@ -138,7 +155,7 @@
         const num = el("span", "tp-num tp-card-num", raceNumber(id));
         num.setAttribute("aria-hidden", "true");
         body.append(num, el("strong", "tp-card-name", t.name), el("span", "tp-card-role", `${t.role} · ${t.years}`), metricLine(t.stats[0]));
-        b.append(art(el("span", "tp-wordmark", t.name)), body);
+        b.append(logoArt(t), body);
         b.addEventListener("click", () => openTitle(id, b));
         return b;
     };
@@ -197,7 +214,7 @@
         );
         const visual = isRace
             ? art(silks(), liveCorner("Live event"))
-            : art(el("span", "tp-wordmark", t.name), el("span", "tp-art-corner", t.tags.slice(0, 2).join(" · ")));
+            : logoArt(t);
         visual.classList.add("tp-art-feature");
         feature.append(body, visual);
         return { feature, play };

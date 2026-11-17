@@ -119,6 +119,9 @@
 
     const fillOverlay = (d) => {
         overlayCard.style.setProperty("--pc", d.accent);
+        const logo = $("#overlay-logo");
+        logo.replaceChildren(...(d.art ? [d.art] : []));
+        logo.hidden = !d.art;
         const banner = $("#overlay-banner");
         banner.textContent = d.banner || "";
         banner.hidden = !d.banner;

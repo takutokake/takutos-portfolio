@@ -32,7 +32,7 @@ Tone: tech chic. Calm, precise, cool. References: Apple TV+ restraint, Linear hi
 ## Components
 - One `.btn-primary` per view. Secondary actions are `.tp-link` text buttons or `.btn-ghost`.
 - Icons are inline SVG with `stroke="currentColor"`. No emoji, no text glyphs (‹ › ▶ ← 🏇) as icons.
-- Project art is a dark tinted panel with a typeset wordmark. No logo images on white boxes.
+- Project art is the logo filling its panel edge to edge: the panel uses the logo's own background (`logoBg`) and `logoZoom` trims the file's padding. Without a logo, a white wordmark sits on `logoBg`. Never a logo inside a smaller white box.
 - Every card shows: race number, name, role · years, and one headline stat (`stats[0]`).
 - Lists of results are ruled rows (hairline between rows), not boxed cards.
 

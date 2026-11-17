@@ -13,7 +13,7 @@ test("has the six titles in order", () => {
 test("every title is complete and its logo exists", () => {
     for (const id of TITLE_IDS) {
         const t = C.titles[id];
-        for (const key of ["name", "org", "role", "dates", "logo", "accent", "pitch", "desc"]) {
+        for (const key of ["name", "org", "role", "dates", "logoBg", "accent", "pitch", "desc"]) {
             assert.ok(t[key], `${id}.${key}`);
         }
         assert.ok(t.tags.length > 0, `${id}.tags`);
@@ -23,7 +23,8 @@ test("every title is complete and its logo exists", () => {
         assert.ok(t.years, `${id}.years`);
         assert.ok(t.stats.length >= 2 && t.stats.length <= 3, `${id} has 2–3 stats`);
         for (const s of t.stats) assert.ok(s.value && s.label, `${id} stat`);
-        assert.ok(fs.existsSync(path.join(__dirname, "..", t.logo)), `${t.logo} exists`);
+        assert.match(t.logoBg, /^#[0-9a-f]{6}$/, `${id}.logoBg`);
+        if (t.logo) assert.ok(fs.existsSync(path.join(__dirname, "..", t.logo)), `${t.logo} exists`);
     }
 });
 
