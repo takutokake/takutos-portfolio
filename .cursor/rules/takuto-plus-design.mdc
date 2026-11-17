@@ -1,0 +1,42 @@
+---
+description: Design system for the Takuto+ work section (quiet streaming layout with race-card details, cool tech-chic palette)
+globs: takuto-plus.*,race-day.js,guestbook.js,catalog.js,premium.css,index.html
+alwaysApply: false
+---
+
+# Takuto+ design rules
+
+Tone: tech chic. Calm, precise, cool. References: Apple TV+ restraint, Linear hierarchy, a printed racing race card.
+
+## Color
+- Surfaces: `--bg #05060a`, `--bg-soft #0a0c12`, ink `#f4f6fb`, muted `--ink-60` / `--ink-40`, hairlines `--line` / `--line-strong`.
+- One accent per screen: the current profile's accent (`catalog.js` → `profiles[id].accent`), set as `--pc`.
+- Profile accents are cool only: ice `#7aa7ff`, teal `#4fd1c5`, violet `#a191ff`, cyan `#67d8f0`.
+- Title accents are silks colors and only appear on Race Day, where six lanes need six colors.
+- Never: Netflix red/green, warm cream text, gold, gradients layered on gradients.
+
+## Shape and spacing
+- Radii: `12px` for cards, tiles, inputs, dialogs; `999px` for buttons and dots. Nothing else.
+- 8px spacing grid. One card size per grid; grids never scroll horizontally.
+
+## Type
+- Inter for UI. Instrument Serif for numerals (race numbers, stats, results) and at most one italic accent word per heading.
+- Small caps style for meta: 11px, 600, `letter-spacing: .16em`, uppercase, `--ink-40`.
+- Numbers use `font-variant-numeric: tabular-nums`.
+
+## Components
+- One `.btn-primary` per view. Secondary actions are `.tp-link` text buttons or `.btn-ghost`.
+- Icons are inline SVG with `stroke="currentColor"`. No emoji, no text glyphs (‹ › ▶ ← 🏇) as icons.
+- Project art is a dark tinted panel with a typeset wordmark. No logo images on white boxes.
+- Every card shows: race number, name, role · years, and one headline stat (`stats[0]`).
+- Lists of results are ruled rows (hairline between rows), not boxed cards.
+
+## Code
+- Visitor text goes in with `textContent`, never `innerHTML`. Static SVG strings from this repo may use a `<template>`.
+- Every motion respects `prefers-reduced-motion`.
+- Check 390px and desktop before calling a change done.
+
+```css
+/* ✅ */ .tp-card { border-radius: 12px; border: 1px solid var(--line); }
+/* ❌ */ .tp-card { border-radius: 16px; background: #fff; border-bottom: 3px solid red; }
+```

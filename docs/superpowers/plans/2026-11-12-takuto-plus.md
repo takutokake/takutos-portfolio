@@ -442,7 +442,7 @@ Create `race-day.js`:
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --test tests/`
+Run: `node --test tests/*.test.js`
 Expected: PASS, all catalog and race tests, 0 failures.
 
 - [ ] **Step 5: Commit**
@@ -1109,7 +1109,7 @@ Append to `takuto-plus.css`:
 
 - [ ] **Step 5: Verify**
 
-Run: `node --check takuto-plus.js && node --test tests/`
+Run: `node --check takuto-plus.js && node --test tests/*.test.js`
 Expected: no syntax output; all tests pass.
 
 In a browser (clear `localStorage` first):
@@ -1354,7 +1354,7 @@ Append to `takuto-plus.css`:
 
 - [ ] **Step 3: Verify**
 
-Run: `node --check race-day.js && node --test tests/`
+Run: `node --check race-day.js && node --test tests/*.test.js`
 Expected: no syntax output; all tests still pass (the `window` guard keeps Node on the planner path).
 
 In a browser:
@@ -1408,6 +1408,10 @@ create policy "public can submit unapproved reviews"
 create policy "public can read approved reviews"
   on public.reviews for select to anon
   using (approved = true);
+
+revoke all on public.reviews from anon;
+grant insert (name, location, note, build_next) on public.reviews to anon;
+grant select (name, location, note, created_at) on public.reviews to anon;
 ```
 
 Expected: "Success. No rows returned."
@@ -1880,16 +1884,19 @@ git commit -m "Update story and About copy to match the resume"
 
 - [ ] **Step 1: Automated checks**
 
-Run: `node --test tests/ && for f in catalog.js premium.js race-day.js takuto-plus.js guestbook.js; do node --check "$f"; done`
+Run: `node --test tests/*.test.js && for f in catalog.js premium.js race-day.js takuto-plus.js guestbook.js; do node --check "$f"; done`
 Expected: all tests pass; no syntax output.
 
 - [ ] **Step 2: Full manual pass**
 
 At a desktop width and a 390px phone width, run the spec's manual checklist (items 1–8), including keyboard-only use (Tab, Enter, Space, Escape) through the picker, rows, title page, Race Day, and guestbook. Confirm the browser console shows no errors.
 
-- [ ] **Step 3: Push**
+- [ ] **Step 3: Merge and push**
+
+Merge `takuto-plus` into `main`, then push `main`. Pushing `main` deploys the site via Vercel.
 
 ```bash
+git switch main && git merge --no-ff takuto-plus
 git push origin main
 ```
 

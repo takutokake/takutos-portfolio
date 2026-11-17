@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
     <link rel="icon" type="image/png" href="images/takuto-logo.png"/>
     <link rel="stylesheet" href="premium.css"/>
+    <link rel="stylesheet" href="takuto-plus.css"/>
 </head>
 <body>
     <!-- Scroll progress -->
@@ -32,8 +33,8 @@
                 <span>takuto</span>
             </a>
             <div class="nav-links" id="nav-links">
-                <a href="#story" data-section="story">Story</a>
                 <a href="#work" data-section="work">Work</a>
+                <a href="#story" data-section="story">Story</a>
                 <a href="#focus" data-section="focus">Now</a>
                 <a href="#about" data-section="about">About</a>
             </div>
@@ -45,31 +46,40 @@
 
     <main id="top">
 
-        <!-- ============ HERO ============ -->
-        <section class="hero" id="hero">
-            <div class="hero-inner">
-                <div class="hero-badge reveal glass-pill">
-                    <span class="pulse-dot"></span>
-                    Takuto Kakeda · Product Builder · Los Angeles
-                </div>
-                <h1 class="hero-title">
-                    <span class="line"><span class="w">Building</span> <span class="w">products</span></span>
-                    <span class="line"><span class="w">that</span> <span class="w">help</span> <span class="w">people</span></span>
-                    <span class="line"><span class="w accent-serif">discover</span> <span class="w">what's</span> <span class="w grad">next.</span></span>
-                </h1>
-                <p class="hero-sub reveal d-2">
-                    Product manager and founder — from personalization at HBO&nbsp;Max to
-                    startups, student communities, and the spaces in between.
-                </p>
-                <div class="hero-ctas reveal d-3">
-                    <a class="btn btn-primary magnetic" href="#story"><span>Start the story</span><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M8 2v11m0 0 4.5-4.5M8 13 3.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                    <a class="btn btn-ghost magnetic" href="#work"><span>Featured work</span></a>
+        <!-- ============ TAKUTO+ (opens the page) ============ -->
+        <section class="work section work-open" id="work">
+            <h1 class="sr-only" id="work-title" tabindex="-1">Takuto Kakeda, product manager and founder</h1>
+
+            <div class="tp-app" id="tp-app">
+                <div class="tp-fallback">
+                    <article class="tp-fallback-card"><h3>HBO Max</h3><p>Product Manager, Warner Bros. Discovery. Helping kids and teens find what to watch next.</p></article>
+                    <article class="tp-fallback-card"><h3>Kroot</h3><p>Founder. A student recruiting OS: a free job board plus a CRM that tracks applications from Gmail.</p></article>
+                    <article class="tp-fallback-card"><h3>ProductSC</h3><p>President. Grew USC's product club from 5 to 200+ members.</p></article>
+                    <article class="tp-fallback-card"><h3>Hearst</h3><p>Associate Product Manager. Pricing, AI scheduling, and a comic fan app pitch.</p></article>
+                    <article class="tp-fallback-card"><h3>FEMO</h3><p>Founder. English mentorship for students heading abroad, across 20 universities.</p></article>
+                    <article class="tp-fallback-card"><h3>Bizlang</h3><p>Co-founder. An AI tool that teaches workplace jargon to non-native English speakers.</p></article>
                 </div>
             </div>
-            <a class="scroll-hint" href="#story" aria-label="Scroll to the story">
-                <span class="scroll-hint-track"><span class="scroll-hint-thumb"></span></span>
-                <span class="scroll-hint-label">Scroll</span>
-            </a>
+            <div class="tp-guestbook" id="tp-guestbook" hidden>
+                <div class="tp-guestbook-head">
+                    <h3>Leave a review</h3>
+                    <p>Tell me where you're from, what you thought, or what I should build next.</p>
+                </div>
+                <div class="tp-ticker" role="region" tabindex="0" aria-label="Visitor reviews">
+                    <ul class="tp-ticker-track" id="tp-ticker-track"></ul>
+                </div>
+                <form class="tp-review-form glass" id="tp-review-form">
+                    <label class="tp-field">Name<input name="name" required maxlength="40" autocomplete="name"/></label>
+                    <label class="tp-field">Where you're from<input name="location" maxlength="40" placeholder="Optional"/></label>
+                    <label class="tp-field tp-field-wide">Your review<textarea name="note" required maxlength="200" rows="3"></textarea></label>
+                    <label class="tp-field tp-field-wide">What should Takuto build next?<input name="build_next" maxlength="120" placeholder="Optional"/></label>
+                    <div class="tp-hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"/></label></div>
+                    <div class="tp-review-actions">
+                        <button class="btn btn-primary" type="submit"><span>Post review</span></button>
+                        <p class="tp-review-status" id="tp-review-status" role="status"></p>
+                    </div>
+                </form>
+            </div>
         </section>
 
         <!-- ============ STORY ============ -->
@@ -84,14 +94,14 @@
                     <p class="chapter-kicker reveal"><span class="chapter-index">01</span> The compass</p>
                     <h2 class="chapter-title reveal d-1">Discover</h2>
                     <p class="chapter-copy reveal d-2">
-                        Every product starts with curiosity. I've chased it through AR experiments
-                        at Snap, 50+ customer interviews to reimagine comics at Hearst, and
-                        personalization research at HBO&nbsp;Max — learning what people actually
+                        Every product starts with curiosity. I've chased it through an AR
+                        horse-racing lens at Snap, hospice clients' scheduling pain at Hearst,
+                        and kids' viewing data at HBO&nbsp;Max — learning what people actually
                         want before deciding what to build.
                     </p>
                     <div class="chapter-stats reveal d-3">
-                        <span class="stat-chip">50+ customer interviews</span>
-                        <span class="stat-chip">3 product internships</span>
+                        <span class="stat-chip">5 A/B tests across 12M+ users</span>
+                        <span class="stat-chip">4 product roles</span>
                     </div>
                 </div>
             </article>
@@ -102,13 +112,12 @@
                     <p class="chapter-kicker reveal"><span class="chapter-index">02</span> The craft</p>
                     <h2 class="chapter-title reveal d-1">Build</h2>
                     <p class="chapter-copy reveal d-2">
-                        Ideas are cheap — shipping is the craft. I've co-founded BizLang, an AI
-                        language coach piloted with 50+ professionals, built Homie to bring
-                        people together over meals, and shipped recommendation work now reaching
-                        millions of HBO&nbsp;Max viewers.
+                        Ideas are cheap — shipping is the craft. I founded Kroot, a recruiting
+                        OS for students; built Bizlang, an AI tool that teaches workplace
+                        jargon; and ship discovery features for millions of HBO&nbsp;Max viewers.
                     </p>
                     <div class="chapter-stats reveal d-3">
-                        <span class="stat-chip">2 startups co-founded</span>
+                        <span class="stat-chip">3 startups built</span>
                         <span class="stat-chip">Features live for 12M+ users</span>
                     </div>
                 </div>
@@ -120,14 +129,15 @@
                     <p class="chapter-kicker reveal"><span class="chapter-index">03</span> The multiplier</p>
                     <h2 class="chapter-title reveal d-1">Connect</h2>
                     <p class="chapter-copy reveal d-2">
-                        Products are people. As President of ProductSC I rebuilt USC's product
-                        community around three original curricula, and through FEMO I paired
-                        100+ international students with English-speaking mentors — because the
-                        best things I've built are rooms where people grow.
+                        Products are people. As President of ProductSC I grew USC's product
+                        community from 5 to 200+ members around three original curricula, and
+                        through FEMO I built an English mentorship program across 20 universities
+                        in 4 countries — because the best things I've built are rooms where
+                        people grow.
                     </p>
                     <div class="chapter-stats reveal d-3">
                         <span class="stat-chip">40× community growth</span>
-                        <span class="stat-chip">100+ mentor–mentee pairs</span>
+                        <span class="stat-chip">400+ FEMO volunteers</span>
                     </div>
                 </div>
             </article>
@@ -139,83 +149,16 @@
                     <h2 class="chapter-title reveal d-1">Create<br/>Opportunity</h2>
                     <p class="chapter-copy reveal d-2">
                         Discovery, building, and community only matter if they open doors.
-                        50+ students placed into PM internships. Mentees speaking with new
-                        confidence. That's the product I care about most — and the reason
-                        for everything below.
+                        200+ Tobitate! scholars ready to study abroad. Students tracking every
+                        application in one place with Kroot. That's the product I care about
+                        most — and the thread through the work above.
                     </p>
                     <div class="chapter-stats reveal d-3">
-                        <span class="stat-chip">50+ PM placements</span>
-                        <span class="stat-chip">85% report new confidence</span>
+                        <span class="stat-chip">200+ scholars supported</span>
+                        <span class="stat-chip">Partners: Amazon, Disney, Riot Games</span>
                     </div>
                 </div>
             </article>
-        </section>
-
-        <!-- ============ FEATURED WORK ============ -->
-        <section class="work section" id="work">
-            <div class="section-head">
-                <p class="section-kicker reveal">Featured work</p>
-                <h2 class="section-title reveal d-1">Selected <span class="accent-serif">chapters</span>, in detail.</h2>
-                <p class="section-sub reveal d-2">Four projects that shaped how I discover, build, and connect. Click any card to expand it.</p>
-            </div>
-
-            <div class="work-grid">
-                <button class="work-card spotlight reveal" data-project="wbd" style="--pc:#8b7cf7" aria-haspopup="dialog">
-                    <div class="work-card-top">
-                        <span class="work-logo"><img src="images/hbo-max-logo.webp" alt="HBO Max logo"/></span>
-                        <span class="work-expand" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M9 3h4v4M13 3 8.5 7.5M7 13H3V9m0 4 4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    </div>
-                    <div class="work-card-main">
-                        <h3>Warner Bros. Discovery</h3>
-                        <p>Personalization &amp; recommendation rails for HBO Max — features rolling out to 12M+ viewers.</p>
-                    </div>
-                    <div class="work-card-meta">
-                        <span class="tag">Product Intern</span><span class="tag">Personalization</span><span class="tag">Streaming</span>
-                    </div>
-                </button>
-
-                <button class="work-card spotlight reveal d-1" data-project="elevait" style="--pc:#4cc9f0" aria-haspopup="dialog">
-                    <div class="work-card-top">
-                        <span class="work-logo work-logo-mono" aria-hidden="true">E</span>
-                        <span class="work-status"><span class="pulse-dot"></span>In progress</span>
-                    </div>
-                    <div class="work-card-main">
-                        <h3>Elevait</h3>
-                        <p>An early-stage AI product helping people discover and act on their next opportunity.</p>
-                    </div>
-                    <div class="work-card-meta">
-                        <span class="tag">Founder</span><span class="tag">AI</span><span class="tag">0 → 1</span>
-                    </div>
-                </button>
-
-                <button class="work-card spotlight reveal d-2" data-project="productsc" style="--pc:#ff9e64" aria-haspopup="dialog">
-                    <div class="work-card-top">
-                        <span class="work-logo"><img src="images/ProductSC-logo-website.png" alt="ProductSC logo"/></span>
-                        <span class="work-expand" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M9 3h4v4M13 3 8.5 7.5M7 13H3V9m0 4 4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    </div>
-                    <div class="work-card-main">
-                        <h3>ProductSC</h3>
-                        <p>Rebuilt USC's product management community — three curricula, 40× growth, 50+ PM placements.</p>
-                    </div>
-                    <div class="work-card-meta">
-                        <span class="tag">President</span><span class="tag">Community</span><span class="tag">Education</span>
-                    </div>
-                </button>
-
-                <button class="work-card spotlight reveal d-3" data-project="femo" style="--pc:#5eead4" aria-haspopup="dialog">
-                    <div class="work-card-top">
-                        <span class="work-logo"><img src="images/femo-logo.png" alt="FEMO logo"/></span>
-                        <span class="work-expand" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M9 3h4v4M13 3 8.5 7.5M7 13H3V9m0 4 4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    </div>
-                    <div class="work-card-main">
-                        <h3>FEMO</h3>
-                        <p>A nonprofit pairing international students with English-speaking mentors — 100+ pairs and counting.</p>
-                    </div>
-                    <div class="work-card-meta">
-                        <span class="tag">Founder</span><span class="tag">Nonprofit</span><span class="tag">Mentorship</span>
-                    </div>
-                </button>
-            </div>
         </section>
 
         <!-- ============ CURRENT FOCUS ============ -->
@@ -227,13 +170,13 @@
             <div class="focus-grid">
                 <div class="focus-card spotlight reveal" style="--pc:#4cc9f0">
                     <span class="focus-num">01</span>
-                    <h3>Building Elevait</h3>
-                    <p>Taking an AI product from zero to one — talking to users, shipping weekly, and staying close to the problem of finding what's next.</p>
+                    <h3>Building Kroot</h3>
+                    <p>Taking a student recruiting OS from zero to one: a free job board, a CRM that reads Gmail, and next, a model that brings whole campuses on board.</p>
                 </div>
                 <div class="focus-card spotlight reveal d-1" style="--pc:#8b7cf7">
                     <span class="focus-num">02</span>
                     <h3>AI × product design</h3>
-                    <p>Exploring how AI reshapes product craft — prototyping in Figma and code, and pressure-testing ideas from my AI Application &amp; Product Design minor.</p>
+                    <p>Exploring how AI reshapes product craft — prototyping in Figma, Cursor, and Claude Code, and shipping LLM features like the teen title classifier at HBO&nbsp;Max.</p>
                 </div>
                 <div class="focus-card spotlight reveal d-2" style="--pc:#ff9e64">
                     <span class="focus-num">03</span>
@@ -250,26 +193,28 @@
                     <p class="section-kicker reveal">About me</p>
                     <h2 class="section-title reveal d-1">Hi, I'm <span class="grad">Takuto</span>.</h2>
                     <p class="about-lede reveal d-2">
-                        I'm a product builder from Japan, based in Los Angeles — a USC Marshall
-                        student in Business Administration with a minor in AI Application &amp;
-                        Product Design.
+                        I'm a product builder from Japan, based in Los Angeles. I studied Business
+                        Administration (Business Analytics) at USC Marshall, with a minor in AI
+                        Applications + Computer Programming.
                     </p>
                     <p class="about-copy reveal d-3">
                         My path has always been about connecting people, ideas, and communities:
-                        product internships at Snap, Hearst, and Warner Bros. Discovery; startups
-                        like BizLang and Homie; and communities like ProductSC and FEMO. The common
+                        product work at Snap, Wellx.ai, Hearst, and Warner Bros. Discovery; startups
+                        like Kroot and Bizlang; and communities like ProductSC and FEMO. The common
                         thread is building experiences that bring people closer together — and
                         closer to what's next for them.
                     </p>
                     <p class="about-copy reveal d-3">
-                        Off the clock you'll find me rock climbing, hunting down LA's best coffee,
-                        or deep in a beatboxing session.
+                        Off the clock you'll find me at the racetrack, exploring a new city,
+                        cooking for friends, or deep in a beatboxing session.
                     </p>
                     <ul class="about-interests reveal d-4">
-                        <li>🧗 Rock climbing</li>
-                        <li>☕ Coffee exploration</li>
-                        <li>🎵 Music &amp; beatboxing</li>
-                        <li>🎨 Figma design</li>
+                        <li>🏇 Horse racing</li>
+                        <li>🎤 Beatboxing</li>
+                        <li>🌏 Exploring cultures</li>
+                        <li>🍳 Cooking</li>
+                        <li>🏃 Group running</li>
+                        <li>🔢 2048</li>
                     </ul>
                 </div>
                 <aside class="about-side reveal d-2">
@@ -283,10 +228,11 @@
                     <div class="about-timeline glass">
                         <h3>Timeline</h3>
                         <ol>
-                            <li><span>2025</span>Product @ Warner Bros. Discovery (HBO Max)</li>
-                            <li><span>2024</span>Product @ Hearst · Product @ Snap Inc.</li>
-                            <li><span>2022</span>President of ProductSC</li>
-                            <li><span>2021</span>Co-founded BizLang · Started at USC Marshall</li>
+                            <li><span>2026</span>Founded Kroot</li>
+                            <li><span>2025</span>Product Manager @ Warner Bros. Discovery (HBO Max)</li>
+                            <li><span>2024</span>Product @ Hearst · Wellx.ai · Snap Inc.</li>
+                            <li><span>2023</span>President of ProductSC · Started Bizlang</li>
+                            <li><span>2020</span>Founded FEMO</li>
                         </ol>
                     </div>
                 </aside>
@@ -303,8 +249,8 @@
                     my inbox is open.
                 </p>
                 <div class="contact-ctas reveal d-3">
-                    <a class="btn btn-primary btn-lg magnetic" href="mailto:kakeda@usc.edu"><span>Say hello</span><svg viewBox="0 0 16 16" width="15" height="15" fill="none"><path d="M2.5 4.5 8 8.75l5.5-4.25M3 3.5h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                    <button class="btn btn-ghost btn-lg magnetic" id="copy-email" data-email="kakeda@usc.edu"><span id="copy-email-label">kakeda@usc.edu</span></button>
+                    <a class="btn btn-primary btn-lg magnetic" href="mailto:takuto.kakeda@gmail.com"><span>Say hello</span><svg viewBox="0 0 16 16" width="15" height="15" fill="none"><path d="M2.5 4.5 8 8.75l5.5-4.25M3 3.5h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <button class="btn btn-ghost btn-lg magnetic" id="copy-email" data-email="takuto.kakeda@gmail.com"><span id="copy-email-label">takuto.kakeda@gmail.com</span></button>
                 </div>
                 <div class="contact-socials reveal d-4">
                     <a href="https://www.linkedin.com/in/takutok" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -328,18 +274,26 @@
                 <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             </button>
             <div class="project-overlay-scroll">
-                <div class="project-overlay-band" id="overlay-band"></div>
-                <div class="project-overlay-body">
+                <div class="overlay-top">
+                    <p class="overlay-banner" id="overlay-banner" hidden></p>
+                    <span class="overlay-num" id="overlay-num" aria-hidden="true"></span>
                     <p class="overlay-kicker" id="overlay-kicker"></p>
                     <h3 id="overlay-title"></h3>
-                    <div class="overlay-tags" id="overlay-tags"></div>
                     <p class="overlay-desc" id="overlay-desc"></p>
-                    <div class="overlay-stats" id="overlay-stats"></div>
+                    <p class="overlay-tags" id="overlay-tags"></p>
+                </div>
+                <div class="project-overlay-body">
+                    <p class="overlay-form-head" aria-hidden="true"><span>Form guide</span><span>Result</span></p>
+                    <ol class="overlay-episodes" id="overlay-episodes" aria-label="Episodes"></ol>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="catalog.js"></script>
     <script src="premium.js"></script>
+    <script src="race-day.js"></script>
+    <script src="takuto-plus.js"></script>
+    <script src="guestbook.js"></script>
 </body>
 </html>

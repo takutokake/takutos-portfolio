@@ -199,6 +199,10 @@ create policy "public can submit unapproved reviews"
 create policy "public can read approved reviews"
   on public.reviews for select to anon
   using (approved = true);
+
+revoke all on public.reviews from anon;
+grant insert (name, location, note, build_next) on public.reviews to anon;
+grant select (name, location, note, created_at) on public.reviews to anon;
 ```
 
 - No update or delete policy for `anon`, so the public key cannot change or
@@ -249,7 +253,7 @@ Applied as part of this work:
 
 ## Testing
 
-Automated: `node --test tests/` checks the catalog (every title, profile, row,
+Automated: `node --test tests/*.test.js` checks the catalog (every title, profile, row,
 match score, and logo file is present and valid) and the race planner (the
 pick always wins, never leads before the final stretch, and every horse's
 progress only moves forward).
