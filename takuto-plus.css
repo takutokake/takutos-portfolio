@@ -278,7 +278,6 @@
     aspect-ratio: 16 / 9;
     overflow: hidden;
     background:
-        linear-gradient(transparent calc(100% - 1px), var(--line) 0) 0 0 / 100% 32px,
         radial-gradient(120% 90% at 80% 0%, color-mix(in srgb, var(--pc) 30%, transparent), transparent 62%),
         var(--tp-surface);
 }
