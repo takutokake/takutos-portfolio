@@ -255,6 +255,7 @@
 
     const choose = (id) => {
         storage.set(id);
+        window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
         if (reduceMotion) return renderHome(id, { focus: true });
         const loader = el("div", "tp-loader");
         loader.style.setProperty("--pc", C.profiles[id].accent);

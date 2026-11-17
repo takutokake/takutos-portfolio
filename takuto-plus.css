@@ -285,6 +285,8 @@
 .tp-art-feature { aspect-ratio: 16 / 10; border: 1px solid var(--line); border-radius: var(--tp-r); }
 .tp-art-logo { background: var(--logo-bg); }
 .tp-art-logo img {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
