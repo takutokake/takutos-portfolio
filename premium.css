@@ -18,6 +18,7 @@
     --grad: linear-gradient(100deg, var(--cyan), #7aa7ff 50%, var(--violet));
     --font-ui: "Inter", -apple-system, "Segoe UI", sans-serif;
     --font-serif: "Instrument Serif", Georgia, serif;
+    --font-hand: "Caveat", "Bradley Hand", cursive;
     --radius: 22px;
     --nav-h: 64px;
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

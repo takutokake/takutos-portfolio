@@ -11,12 +11,17 @@ Tone: tech chic. Calm, precise, cool. References: Apple TV+ restraint, Linear hi
 ## Color
 - Surfaces: `--bg #05060a`, `--bg-soft #0a0c12`, ink `#f4f6fb`, muted `--ink-60` / `--ink-40`, hairlines `--line` / `--line-strong`.
 - One accent per screen: the current profile's accent (`catalog.js` → `profiles[id].accent`), set as `--pc`.
-- Profile accents are cool only: ice `#7aa7ff`, teal `#4fd1c5`, violet `#a191ff`, cyan `#67d8f0`.
+- Profile accents are soft pastels that read on dark: lavender `#b7a6f5`, butter `#f0c96b`, sky `#8fb3ee`, sage `#9fd39a`.
 - Title accents are silks colors and only appear on Race Day, where six lanes need six colors.
 - Never: Netflix red/green, warm cream text, gold, gradients layered on gradients.
 
+## Who's watching (the one warm moment)
+- The opening picker is a desk scene: polaroids taped to a dark wall, illustrated personas, handwritten labels (`--font-hand`, Caveat), stickers, and ink doodles.
+- Polaroids use paper `#f6f1e7`, 3px corners, a tape strip, and a slight tilt that straightens on hover.
+- Profile pastels (lavender, butter, sky, sage) live in `catalog.js` as `accent` and `tint`. Everything after the picker returns to the quiet streaming style.
+
 ## Shape and spacing
-- Radii: `12px` for cards, tiles, inputs, dialogs; `999px` for buttons and dots. Nothing else.
+- Radii: `12px` for cards, tiles, inputs, dialogs; `999px` for buttons and dots; `3px` for polaroids only.
 - 8px spacing grid. One card size per grid; grids never scroll horizontally.
 
 ## Type

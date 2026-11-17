@@ -30,21 +30,34 @@
         return node;
     };
 
-    // Drawn marks, one per profile. Same stroke, same size, no emoji.
-    const MARKS = {
-        recruiter: `<svg viewBox="0 0 32 32" fill="none"><path d="M6.5 10h8.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><path d="M18.2 10.4 20 12.2l4-4.2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 16h19M6.5 22h19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>`,
-        founder: `<svg viewBox="0 0 32 32" fill="none"><circle cx="11" cy="16.5" r="5.25" stroke="currentColor" stroke-width="1.75"/><path d="M19.4 12.2 22 9.8v12.7M19.2 22.5h5.6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        community: `<svg viewBox="0 0 32 32" fill="none"><path d="M5 23.5c1.6-7 5.6-10.8 11-10.8s9.4 3.8 11 10.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><circle cx="9.2" cy="12.2" r="1.7" fill="currentColor"/><circle cx="16" cy="9" r="1.95" fill="currentColor"/><circle cx="22.8" cy="12.2" r="1.7" fill="currentColor"/></svg>`,
-        curious: `<svg viewBox="0 0 32 32" fill="none"><path d="M7.5 12.5h17v2.15a2.15 2.15 0 0 0 0 4.2V21h-17v-2.15a2.15 2.15 0 0 0 0-4.2v-2.15Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M16 14.2v4.2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="1.1 1.7"/></svg>`,
+    const INK = "#1f2030";
+    // Sticker for each polaroid, drawn in the same ink as the illustrations.
+    const STICKERS = {
+        recruiter: `<svg viewBox="0 0 48 48" fill="none" stroke="${INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M15 3l9 14 9-14" stroke-width="2.6"/><rect x="11" y="16" width="26" height="29" rx="4" fill="#fff"/><rect x="19.5" y="13.5" width="9" height="5.5" rx="1.6" fill="#b7a6f5"/><circle cx="24" cy="27.5" r="4.6" fill="#cbbff2"/><path d="M17 37.5h14M19.5 41.5h9"/></svg>`,
+        founder: `<svg viewBox="0 0 48 48" fill="none" stroke="${INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(38 24 24)"><path d="M20.5 34.5c0 4.5 3.5 9 3.5 9s3.5-4.5 3.5-9z" fill="#f0c96b"/><path d="M17 25.5l-5.5 7 6.5.8zM31 25.5l5.5 7-6.5.8z" fill="#f08a72"/><path d="M24 4c6.5 5.2 8.5 12.6 8 20.5l-2.5 10h-11L16 24.5C15.5 16.6 17.5 9.2 24 4z" fill="#fff"/><circle cx="24" cy="18" r="3.6" fill="#8fb3ee"/></g></svg>`,
+        student: `<svg viewBox="0 0 48 48" fill="none" stroke="${INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 22.5v8.5c0 3 5.4 6 12 6s12-3 12-6v-8.5" fill="#3a3c52"/><path d="M3 18L24 8.5 45 18 24 27.5z" fill="#2a2b3d"/><path d="M38.5 21v11" stroke="#f0c96b" stroke-width="2.4"/><circle cx="38.5" cy="34" r="2.6" fill="#f0c96b"/></svg>`,
+        explorer: `<svg viewBox="0 0 48 48" fill="none" stroke="${INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M10 44c4-3.5 23-3.5 28 0" fill="#f3dc9b"/><path d="M24 21c1.6 7 .8 14.5-2.6 21" stroke="#8a5a3c" stroke-width="4"/><path d="M24 21c-4-6-11.5-7.2-17-4 6.3.2 11 1.6 17 4zM24 21c4-6 11.5-7.2 17-4-6.3.2-11 1.6-17 4zM24 21c-6.5-1.6-12.5 1.4-14.5 7 4.2-3.2 9.2-5.3 14.5-7zM24 21c6.5-1.6 12.5 1.4 14.5 7-4.2-3.2-9.2-5.3-14.5-7zM24 21c-2.4-6-1.4-12 3-15.5-1.4 5.2-1.4 10.4-3 15.5z" fill="#7cc576"/></svg>`,
     };
+    const DOODLES = {
+        tv: `<svg viewBox="0 0 64 58" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4l9 9.5L41 4"/><rect x="5" y="13.5" width="54" height="38" rx="9"/><rect x="11" y="19.5" width="35" height="26" rx="6"/><circle cx="22" cy="29.5" r="1.4" fill="currentColor"/><circle cx="35" cy="29.5" r="1.4" fill="currentColor"/><path d="M22.5 36c3.4 3 8.6 3 12 0"/><circle cx="52.5" cy="25" r="1.8"/><path d="M50 33h5M50 38h5M15 51.5l-3 5M49 51.5l3 5"/></svg>`,
+        spark: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M8 20l9-12M17 26l15-6M15 35l11-1"/></svg>`,
+        swoosh: `<svg viewBox="0 0 220 22" fill="none" preserveAspectRatio="none"><path d="M5 15C60 6 145 4 215 9" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>`,
+        arrow: `<svg viewBox="0 0 70 50" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M64 40C46 41 26 33 12 10"/><path d="M8 22L11 9l12 5"/></svg>`,
+    };
+    // Scene art is 1536×1024; the spine labels are placed on the drawn books.
+    const SCENE = `<svg viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMax slice"><image href="images/whos-watching/scene.jpg" width="1536" height="1024"/><g class="tp-spines">${["PRODUCT", "STARTUPS", "MEDIA", "AI"].map((w, i) => `<text x="84" y="${[754, 818, 881, 945][i]}">${w}</text>`).join("")}</g></svg>`;
     const ICONS = {
         play: `<svg viewBox="0 0 16 16"><path d="M4.5 2.8v10.4L13 8 4.5 2.8Z" fill="currentColor"/></svg>`,
         swap: `<svg viewBox="0 0 16 16" fill="none"><path d="M4 6h9l-3-3M12 10H3l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     };
-    const avatar = (id, className = "tp-avatar") => {
-        const a = el("span", className);
-        a.style.setProperty("--pc", C.profiles[id].accent);
-        a.append(svg(MARKS[id]));
+    const avatar = (id) => {
+        const p = C.profiles[id];
+        const a = el("span", "tp-avatar-sm");
+        a.style.background = p.tint;
+        const img = el("img");
+        img.src = p.photo;
+        img.alt = "";
+        a.append(img);
         return a;
     };
 
@@ -196,7 +209,7 @@
         app.style.setProperty("--pc", p.accent);
 
         const who = el("p", "tp-bar-who");
-        who.append(avatar(id, "tp-avatar tp-avatar-sm"), `Watching as ${p.label}`);
+        who.append(avatar(id), `Watching as ${p.label}`);
         const sw = button("tp-link");
         sw.append("Switch profile", svg(ICONS.swap));
         sw.addEventListener("click", () => {
@@ -234,25 +247,39 @@
         setTimeout(() => renderHome(id, { focus: true }), LOADER_MS);
     };
 
+    const renderPolaroid = (id, p) => {
+        const b = button("tp-polaroid");
+        b.style.setProperty("--pc", p.accent);
+        b.style.setProperty("--tint", p.tint);
+        const photo = el("span", "tp-photo");
+        const img = el("img");
+        img.src = p.photo;
+        img.alt = "";
+        img.width = 640;
+        img.height = 640;
+        photo.append(img, svg(STICKERS[id], "tp-sticker"));
+        b.append(photo, el("span", "tp-polaroid-label", p.label), el("span", "tp-polaroid-blurb", p.blurb));
+        b.addEventListener("click", () => choose(id));
+        return b;
+    };
+
     const renderPicker = ({ focus = false } = {}) => {
         app.style.removeProperty("--pc");
         const grid = el("div", "tp-profiles");
-        for (const [id, p] of Object.entries(C.profiles)) {
-            const b = button("tp-profile");
-            b.style.setProperty("--pc", p.accent);
-            b.append(avatar(id), el("span", "tp-profile-label", p.label), el("span", "tp-profile-blurb", p.blurb));
-            b.addEventListener("click", () => choose(id));
-            grid.append(b);
-        }
-        const title = el("h2", "tp-picker-title", "Who's ");
-        title.append(el("span", "accent-serif", "watching"), "?");
-        const wrap = el("div", "tp-picker");
-        wrap.append(
-            el("p", "tp-kicker", "Takuto Kakeda · Product manager & founder · Los Angeles"),
-            title,
-            grid,
-            el("p", "tp-picker-hint", "Pick a profile and I'll line up the work that matters to you.")
-        );
+        for (const [id, p] of Object.entries(C.profiles)) grid.append(renderPolaroid(id, p));
+
+        const script = el("span", "tp-script", "watching?");
+        script.append(svg(DOODLES.swoosh, "tp-swoosh"));
+        const title = el("h2", "tp-picker-title");
+        title.append(svg(DOODLES.tv, "tp-doodle-tv"), "Who's ", script, svg(DOODLES.spark, "tp-doodle-spark"));
+
+        const hint = el("p", "tp-picker-hint");
+        hint.append(svg(DOODLES.arrow, "tp-doodle-arrow"), "Pick a profile and I'll line up the work that matters to ", el("span", "tp-you", "you"), ".");
+
+        const inner = el("div", "tp-stage-inner");
+        inner.append(el("p", "tp-kicker tp-stage-kicker", "Takuto Kakeda · Product manager & founder · Los Angeles"), title, grid, hint);
+        const wrap = el("div", "tp-picker tp-stage");
+        wrap.append(svg(SCENE, "tp-scene"), inner);
         app.replaceChildren(wrap);
         if (focus) grid.querySelector("button").focus({ preventScroll: true });
     };

@@ -28,19 +28,21 @@ test("every title is complete and its logo exists", () => {
 });
 
 test("profiles list every title once, featured first", () => {
-    assert.deepEqual(Object.keys(C.profiles), ["recruiter", "founder", "community", "curious"]);
+    assert.deepEqual(Object.keys(C.profiles), ["recruiter", "founder", "student", "explorer"]);
     for (const [pid, p] of Object.entries(C.profiles)) {
-        assert.ok(p.label && p.blurb && p.accent && p.picksTitle, `${pid} display fields`);
+        assert.ok(p.label && p.blurb && p.accent && p.tint && p.picksTitle, `${pid} display fields`);
+        assert.ok(fs.existsSync(path.join(__dirname, "..", p.photo)), `${p.photo} exists`);
         assert.ok(p.featured === "race" || TITLE_IDS.includes(p.featured), `${pid}.featured`);
         assert.deepEqual([...p.picks].sort(), [...TITLE_IDS].sort(), `${pid} shows each title once`);
         if (p.featured !== "race") assert.equal(p.picks[0], p.featured, `${pid} featured is pick 1`);
     }
 });
 
-test("accents are cool hex colors and profiles share none", () => {
+test("accents are hex colors and profiles share none", () => {
     const hex = /^#[0-9a-f]{6}$/;
     const profileAccents = Object.values(C.profiles).map((p) => p.accent);
     for (const a of profileAccents) assert.match(a, hex);
+    for (const p of Object.values(C.profiles)) assert.match(p.tint, hex);
     assert.equal(new Set(profileAccents).size, profileAccents.length);
     for (const t of Object.values(C.titles)) assert.match(t.accent, hex);
 });
@@ -48,8 +50,8 @@ test("accents are cool hex colors and profiles share none", () => {
 test("featured banners match the spec", () => {
     assert.equal(C.profiles.recruiter.featured, "hbo");
     assert.equal(C.profiles.founder.featured, "kroot");
-    assert.equal(C.profiles.community.featured, "productsc");
-    assert.equal(C.profiles.curious.featured, "race");
+    assert.equal(C.profiles.student.featured, "productsc");
+    assert.equal(C.profiles.explorer.featured, "race");
 });
 
 test("race copy credits Snap and sample reviews exist", () => {
