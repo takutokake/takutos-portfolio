@@ -244,10 +244,15 @@
             b.addEventListener("click", () => choose(id));
             grid.append(b);
         }
-        const title = el("h3", "tp-picker-title", "Who's ");
+        const title = el("h2", "tp-picker-title", "Who's ");
         title.append(el("span", "accent-serif", "watching"), "?");
         const wrap = el("div", "tp-picker");
-        wrap.append(title, grid);
+        wrap.append(
+            el("p", "tp-kicker", "Takuto Kakeda · Product manager & founder · Los Angeles"),
+            title,
+            grid,
+            el("p", "tp-picker-hint", "Pick a profile and I'll line up the work that matters to you.")
+        );
         app.replaceChildren(wrap);
         if (focus) grid.querySelector("button").focus({ preventScroll: true });
     };

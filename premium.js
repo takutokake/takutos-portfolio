@@ -6,11 +6,6 @@
     const $ = (sel, root = document) => root.querySelector(sel);
     const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-    /* ---------- hero word stagger ---------- */
-    $$(".hero-title .line").forEach((line) => {
-        $$(".w", line).forEach((w, i) => w.style.setProperty("--i", i));
-    });
-
     /* ---------- reveal on scroll ---------- */
     const revealIO = new IntersectionObserver(
         (entries) => {
