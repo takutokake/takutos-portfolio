@@ -283,25 +283,20 @@
         var(--tp-surface);
 }
 .tp-art-feature { aspect-ratio: 16 / 10; border: 1px solid var(--line); border-radius: var(--tp-r); }
-.tp-art-logo { background: var(--logo-bg); }
+.tp-art-logo { grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
 .tp-art-logo img {
-    position: absolute;
-    inset: 0;
     display: block;
-    width: 100%;
-    height: 100%;
+    width: var(--logo-w);
+    height: auto;
+    max-height: 58%;
     object-fit: contain;
-    transform: scale(var(--logo-zoom, 1));
-    transition: transform 0.6s var(--ease-out);
+    opacity: 0.94;
+    transition: transform 0.6s var(--ease-out), opacity 0.3s;
 }
 .tp-card:hover .tp-art-logo img,
-.tp-card:focus-visible .tp-art-logo img { transform: scale(calc(var(--logo-zoom, 1) * 1.05)); }
-.tp-art-logo .tp-wordmark { color: #fff; font-size: 2rem; letter-spacing: 0.02em; }
-.tp-art-feature.tp-art-logo .tp-wordmark { font-size: clamp(2.4rem, 5vw, 3.4rem); }
+.tp-card:focus-visible .tp-art-logo img { transform: scale(1.05); opacity: 1; }
 .overlay-logo .tp-art { aspect-ratio: 16 / 6; }
 .overlay-logo[hidden] { display: none; }
-.tp-wordmark { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
-.tp-art-feature .tp-wordmark { font-size: clamp(1.8rem, 3.4vw, 2.4rem); }
 .tp-art-corner {
     position: absolute;
     left: 16px;

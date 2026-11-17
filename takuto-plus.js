@@ -121,17 +121,12 @@
 
     const logoArt = (t) => {
         const a = el("span", "tp-art tp-art-logo");
-        a.style.setProperty("--logo-bg", t.logoBg);
-        a.style.setProperty("--logo-zoom", t.logoZoom || 1);
-        if (t.logo) {
-            const img = el("img");
-            img.src = t.logo;
-            img.alt = "";
-            img.loading = "lazy";
-            a.append(img);
-        } else {
-            a.append(el("span", "tp-wordmark", t.name));
-        }
+        a.style.setProperty("--logo-w", `${t.logoWidth}%`);
+        const img = el("img");
+        img.src = t.logo;
+        img.alt = "";
+        img.loading = "lazy";
+        a.append(img);
         return a;
     };
 
