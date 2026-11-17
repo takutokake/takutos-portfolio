@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Takuto+ · design directions (low fidelity)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+/* ---------- cool "tech chic" tokens ---------- */
+:root {
+    --bg: #05070b;
+    --surface: #0b0f16;
+    --surface-2: #10151e;
+    --ink: #eef2f8;
+    --ink-60: rgba(222, 230, 242, 0.62);
+    --ink-40: rgba(222, 230, 242, 0.4);
+    --line: rgba(200, 215, 235, 0.09);
+    --line-strong: rgba(200, 215, 235, 0.18);
+    --ice: #7aa7ff;
+    --teal: #4fd1c5;
+    --violet: #a191ff;
+    --cyan: #67d8f0;
+    --r: 12px;
+    --sans: "Inter", -apple-system, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; padding: 56px 24px 120px; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+/* ---------- page chrome (not part of the design) ---------- */
+.doc-head h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+.doc-head p { margin-top: 8px; color: var(--ink-60); max-width: 720px; }
+.doc-nav { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+.doc-nav a { color: var(--ink); text-decoration: none; padding: 7px 14px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: 13px; }
+.direction { margin-top: 88px; }
+.dir-label { display: flex; align-items: baseline; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line-strong); }
+.dir-label .n { font: italic 40px/1 var(--serif); color: var(--ice); }
+.dir-label h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.dir-label .rec { margin-left: auto; font-size: 12px; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; }
+.dir-why { margin-top: 14px; color: var(--ink-60); max-width: 780px; }
+.frame-title { margin: 44px 0 12px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-40); }
+.frame { border: 1px solid var(--line); border-radius: 16px; padding: 48px; background:
+    radial-gradient(900px 400px at 85% -20%, rgba(122, 167, 255, 0.08), transparent 60%), var(--bg); }
+.notes { margin-top: 12px; display: grid; gap: 4px; color: var(--ink-60); font-size: 13px; padding-left: 18px; }
+
+/* ---------- shared design primitives ---------- */
+.kicker { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-40); }
+.accent { color: var(--accent); }
+.serif-i { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.num { font-family: var(--serif); font-variant-numeric: tabular-nums; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 20px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.btn svg { width: 14px; height: 14px; }
+.btn-primary { background: var(--ink); color: #070a10; }
+.btn-quiet { border: 1px solid var(--line-strong); color: var(--ink); }
+.link-btn { font-size: 13px; color: var(--ink-60); display: inline-flex; align-items: center; gap: 6px; }
+.link-btn:hover { color: var(--ink); }
+.icon-btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line-strong); display: grid; place-items: center; }
+.icon-btn svg { width: 14px; height: 14px; }
+
+/* ---------- picker (shared by both directions) ---------- */
+.picker { text-align: center; }
+.picker h3 { margin-top: 10px; font-size: 40px; font-weight: 600; letter-spacing: -0.025em; }
+.profiles { margin-top: 44px; display: grid; grid-template-columns: repeat(4, 160px); justify-content: center; gap: 28px; }
+.profile { display: grid; justify-items: center; gap: 12px; cursor: pointer; }
+.mark { width: 128px; height: 128px; border-radius: var(--r); display: grid; place-items: center;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 22%, var(--surface-2)), var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    color: var(--ink); transition: transform .25s, border-color .2s; }
+.mark svg { width: 54px; height: 54px; }
+.profile:hover .mark { transform: translateY(-3px); border-color: var(--accent); }
+.profile strong { font-weight: 600; }
+.profile span { color: var(--ink-40); font-size: 13px; margin-top: -8px; }
+
+/* ---------- top bar ---------- */
+.bar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; margin-bottom: 28px; border-bottom: 1px solid var(--line); }
+.who { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink-60); }
+.who .mini { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 25%, var(--surface-2)); }
+.who .mini svg { width: 14px; height: 14px; }
+
+/* ---------- direction 1: quiet streaming × race card ---------- */
+.d1-feature { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+.d1-meta { display: flex; gap: 14px; align-items: baseline; }
+.d1-meta .num { font-size: 22px; color: var(--accent); }
+.d1-feature h3 { margin-top: 10px; font-size: 56px; line-height: 1; font-weight: 600; letter-spacing: -0.035em; }
+.d1-feature .pitch { margin-top: 14px; color: var(--ink-60); max-width: 460px; }
+.stats { margin-top: 26px; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats div { padding: 14px 28px 14px 0; margin-right: 28px; border-right: 1px solid var(--line); }
+.stats div:last-child { border-right: 0; margin-right: 0; }
+.stats .num { display: block; font-size: 30px; line-height: 1.1; }
+.stats small { color: var(--ink-60); font-size: 12px; }
+.d1-actions { margin-top: 26px; display: flex; gap: 12px; align-items: center; }
+.art { position: relative; aspect-ratio: 16 / 10; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line);
+    background:
+        linear-gradient(transparent 0 calc(100% - 1px), var(--line) 0) 0 0 / 100% 36px,
+        radial-gradient(120% 90% at 80% 10%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 60%),
+        var(--surface); display: grid; place-items: center; }
+.wordmark { font-size: 34px; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
+.art .corner { position: absolute; left: 16px; bottom: 14px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-60); }
+
+.section-row { margin-top: 52px; display: flex; align-items: baseline; justify-content: space-between; }
+.section-row h4 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+.d1-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card { border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); overflow: hidden; cursor: pointer; transition: border-color .2s, transform .25s; }
+.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.card .art { aspect-ratio: 16 / 9; border: 0; border-radius: 0; border-bottom: 1px solid var(--line); }
+.card .art .wordmark { font-size: 24px; }
+.card-body { padding: 16px 18px 18px; display: grid; grid-template-columns: auto 1fr; column-gap: 14px; }
+.card-body .num { grid-row: span 3; font-size: 22px; line-height: 1; color: var(--ink-40); padding-top: 2px; }
+.card-body strong { font-weight: 600; }
+.card-body .role { color: var(--ink-60); font-size: 13px; }
+.card-body .metric { margin-top: 10px; font-size: 13px; color: var(--ink); }
+.card-body .metric b { color: var(--accent); font-weight: 600; }
+.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 8px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.silks { display: flex; gap: 8px; }
+.silks i { width: 16px; height: 16px; border-radius: 999px; border: 2px solid var(--bg); outline: 1px solid var(--line-strong); }
+
+/* ---------- detail view (both directions) ---------- */
+.detail { max-width: 760px; margin: 0 auto; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); overflow: hidden; }
+.detail-top { position: relative; padding: 32px 36px 28px; border-bottom: 1px solid var(--line);
+    background: radial-gradient(90% 140% at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%); }
+.detail-top .icon-btn { position: absolute; top: 20px; right: 20px; }
+.detail-top .big { font-size: 64px; line-height: .9; color: var(--accent); }
+.detail-top h3 { margin-top: 14px; font-size: 36px; font-weight: 600; letter-spacing: -0.03em; }
+.detail-top p { margin-top: 10px; color: var(--ink-60); max-width: 560px; }
+.form-label { padding: 22px 36px 8px; display: flex; justify-content: space-between; }
+.form { list-style: none; padding: 0 36px 28px; }
+.form li { display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.form li:last-child { border-bottom: 0; }
+.form .num { color: var(--ink-40); font-size: 18px; }
+.form .t { font-weight: 500; }
+.form .m { text-align: right; font-size: 13px; color: var(--ink-60); max-width: 260px; }
+.form .m b { display: block; font-family: var(--serif); font-weight: 400; font-size: 22px; color: var(--ink); }
+
+/* ---------- direction 2: the race card ---------- */
+.d2-head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 2px solid var(--ink); }
+.d2-head h3 { font-size: 44px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+.d2-head .meta { text-align: right; color: var(--ink-60); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.d2-cols, .d2-row { display: grid; grid-template-columns: 64px 1.3fr 1fr 1.2fr 40px; gap: 20px; align-items: center; }
+.d2-cols { padding: 12px 0; border-bottom: 1px solid var(--line-strong); }
+.d2-row { padding: 22px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.d2-row:hover { background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent); }
+.d2-row .num { font-size: 40px; line-height: 1; color: var(--ink-40); }
+.d2-row.lead .num { color: var(--accent); }
+.d2-row strong { display: block; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+.d2-row .role { color: var(--ink-60); font-size: 13px; }
+.d2-row .form-line { font-size: 13px; color: var(--ink-60); }
+.d2-row .metric .num { font-size: 26px; color: var(--ink); }
+.d2-row .metric small { display: block; color: var(--ink-60); font-size: 12px; }
+.d2-row .go { justify-self: end; color: var(--ink-40); }
+.d2-row .go svg { width: 16px; height: 16px; }
+.d2-live { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border: 1px solid var(--line-strong); border-radius: var(--r); }
+
+/* ---------- phone frame ---------- */
+.phone { width: 390px; margin: 0 auto; border: 1px solid var(--line-strong); border-radius: 28px; padding: 28px 18px; background: var(--bg); }
+.phone .d1-feature { grid-template-columns: 1fr; gap: 20px; }
+.phone .d1-feature h3 { font-size: 40px; }
+.phone .stats { grid-template-columns: repeat(3, 1fr); }
+.phone .stats div { padding-right: 10px; margin-right: 10px; }
+.phone .stats .num { font-size: 22px; }
+.phone .d1-grid { grid-template-columns: 1fr; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-head">
+    <p class="kicker">Takuto+ · low-fidelity directions</p>
+    <h1>Two ways to make the work section feel like you</h1>
+    <p>Same content, same cool “tech chic” palette, one accent per screen, two corner radii (12px and pill), SVG icons only, no white logo boxes, no emoji. Real logos are replaced by type wordmarks until clean SVG logos exist.</p>
+    <nav class="doc-nav"><a href="#d1">1 · Quiet streaming × race card</a><a href="#d2">2 · The race card</a><a href="#detail">Shared detail view</a><a href="#mobile">Phone (390px)</a></nav>
+</header>
+
+<!-- ============ DIRECTION 1 ============ -->
+<section class="direction" id="d1">
+    <div class="dir-label"><span class="n">1</span><h2>Quiet streaming × race-card details</h2><span class="rec">Recommended</span></div>
+    <p class="dir-why">Keeps the streaming idea recruiters understand instantly, but in Apple TV+ restraint: one featured title, then every project at once in an even grid. Race-card details (serif numerals, ruled stats, small caps) make it yours.</p>
+
+    <p class="frame-title">Who's watching</p>
+    <div class="frame">
+        <div class="picker">
+            <p class="kicker">Takuto+</p>
+            <h3>Who's <span class="serif-i">watching</span>?</h3>
+            <div class="profiles">
+                <div class="profile" style="--accent:var(--ice)"><span class="mark"><svg viewBox="0 0 32 32" fill="none"><path d="M6.5 10h8.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><path d="M18.2 10.4 20 12.2l4-4.2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 16h19M6.5 22h19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></span><strong>Recruiter</strong><span>Impact first</span></div>
+                <div class="profile" style="--accent:var(--teal)"><span class="mark"><svg viewBox="0 0 32 32" fill="none"><circle cx="11" cy="16.5" r="5.25" stroke="currentColor" stroke-width="1.75"/><path d="M19.4 12.2 22 9.8v12.7M19.2 22.5h5.6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Founder</strong><span>0 → 1 work</span></div>
+                <div class="profile" style="--accent:var(--violet)"><span class="mark"><svg viewBox="0 0 32 32" fill="none"><path d="M5 23.5c1.6-7 5.6-10.8 11-10.8s9.4 3.8 11 10.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/><circle cx="9.2" cy="12.2" r="1.7" fill="currentColor"/><circle cx="16" cy="9" r="1.95" fill="currentColor"/><circle cx="22.8" cy="12.2" r="1.7" fill="currentColor"/></svg></span><strong>Community</strong><span>People and programs</span></div>
+                <div class="profile" style="--accent:var(--cyan)"><span class="mark"><svg viewBox="0 0 32 32" fill="none"><path d="M7.5 12.5h17v2.15a2.15 2.15 0 0 0 0 4.2V21h-17v-2.15a2.15 2.15 0 0 0 0-4.2v-2.15Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M16 14.2v4.2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="1.1 1.7"/></svg></span><strong>Just curious</strong><span>The fun side</span></div>
+            </div>
+        </div>
+    </div>
+    <ul class="notes"><li>Tiles are dark and tinted, not bright blocks; color only shows on the edge and on hover.</li><li>Accents are all cool: ice blue, teal, violet, cyan.</li></ul>
+
+    <p class="frame-title">Recruiter home</p>
+    <div class="frame" style="--accent:var(--ice)">
+        <div class="bar">
+            <span class="who"><span class="mini"><svg viewBox="0 0 32 32" fill="none"><path d="M6.5 10h8.5M6.5 16h19M6.5 22h19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>Watching as Recruiter</span>
+            <button class="link-btn">Switch profile <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M4 6h9l-3-3M12 10H3l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+
+        <div class="d1-feature">
+            <div>
+                <div class="d1-meta"><span class="num">No. 01</span><span class="kicker">Featured for recruiters · Product Manager</span></div>
+                <h3>HBO Max</h3>
+                <p class="pitch">Helping kids and teens find what to watch next, across 12M+ users and 11 new markets.</p>
+                <div class="stats">
+                    <div><span class="num">+12%</span><small>novel plays</small></div>
+                    <div><span class="num">+5.4%</span><small>minutes watched</small></div>
+                    <div><span class="num">4,000+</span><small>titles opened to teens</small></div>
+                </div>
+                <div class="d1-actions">
+                    <button class="btn btn-primary"><svg viewBox="0 0 16 16"><path d="M4 2.8v10.4L13 8 4 2.8Z" fill="currentColor"/></svg>View the work</button>
+                    <span class="link-btn">Warner Bros. Discovery · Aug 2025 – Present</span>
+                </div>
+            </div>
+            <div class="art"><span class="wordmark">HBO Max</span><span class="corner">Streaming · Kids &amp; Family</span></div>
+        </div>
+
+        <div class="section-row"><h4>Top picks for recruiters</h4><span class="kicker">6 titles</span></div>
+        <div class="d1-grid">
+            <div class="card"><div class="art"><span class="wordmark">kroot</span></div><div class="card-body"><span class="num">02</span><strong>Kroot</strong><span class="role">Founder · 2026</span><span class="metric">ML model on <b>3,000+</b> recruiting signals</span></div></div>
+            <div class="card"><div class="art"><span class="wordmark">Hearst</span></div><div class="card-body"><span class="num">03</span><strong>Hearst</strong><span class="role">Associate PM · 2024</span><span class="metric"><b>$9M</b> deal supported by pricing model</span></div></div>
+            <div class="card"><div class="art"><span class="wordmark">ProductSC</span></div><div class="card-body"><span class="num">04</span><strong>ProductSC</strong><span class="role">President · 2023–25</span><span class="metric"><b>40×</b> membership growth</span></div></div>
+            <div class="card"><div class="art"><span class="wordmark">FEMO</span></div><div class="card-body"><span class="num">05</span><strong>FEMO</strong><span class="role">Founder · 2020–24</span><span class="metric"><b>400+</b> volunteers, 4 countries</span></div></div>
+            <div class="card"><div class="art"><span class="wordmark">Bizlang</span></div><div class="card-body"><span class="num">06</span><strong>Bizlang</strong><span class="role">Co-founder · 2023–24</span><span class="metric"><b>150+</b> users</span></div></div>
+            <div class="card"><div class="art"><div class="silks"><i style="background:#a191ff"></i><i style="background:#7bc47f"></i><i style="background:#7aa7ff"></i><i style="background:#f7768e"></i><i style="background:#4fd1c5"></i><i style="background:#e0af68"></i></div><span class="corner"><span class="live-dot"></span>Live event</span></div><div class="card-body"><span class="num">R</span><strong>Race Day</strong><span class="role">Pick a horse · 10 seconds</span><span class="metric">Six projects, one track</span></div></div>
+        </div>
+    </div>
+    <ul class="notes"><li>One primary button; everything else is a quiet link.</li><li>All six titles visible at once in a 3 × 2 grid: no scrolling rows, no empty space.</li><li>Every card shows a role and one headline number; the "98% match" score is gone, or could become one small line.</li><li>Race Day uses the six silks colors instead of an emoji horse.</li></ul>
+</section>
+
+<!-- ============ DIRECTION 2 ============ -->
+<section class="direction" id="d2">
+    <div class="dir-label"><span class="n">2</span><h2>The race card</h2></div>
+    <p class="dir-why">Drops the streaming metaphor for the home view: the work is a printed racing program. The most distinctive and the fastest to scan, but it says "horse racing" before it says "streaming."</p>
+
+    <p class="frame-title">Recruiter home</p>
+    <div class="frame" style="--accent:var(--ice)">
+        <div class="bar">
+            <span class="who"><span class="mini"><svg viewBox="0 0 32 32" fill="none"><path d="M6.5 10h8.5M6.5 16h19M6.5 22h19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>Race card for Recruiters</span>
+            <button class="link-btn">Switch profile <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M4 6h9l-3-3M12 10H3l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="d2-head"><h3>The <span class="serif-i">field</span></h3><div class="meta">Six entries · Ordered for recruiters</div></div>
+        <div class="d2-cols kicker"><span>No.</span><span>Entry</span><span>Form</span><span>Best result</span><span></span></div>
+        <div class="d2-row lead"><span class="num">1</span><div><strong>HBO Max</strong><span class="role">Product Manager · 2025–</span></div><span class="form-line">12M+ users · 5 A/B tests · 11 markets</span><div class="metric"><span class="num">+12%</span><small>novel plays for kids</small></div><span class="go"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="d2-row"><span class="num">2</span><div><strong>Kroot</strong><span class="role">Founder · 2026–</span></div><span class="form-line">3,000+ signals · SOC 2 · 20 days</span><div class="metric"><span class="num">300+</span><small>visitors in 20 days</small></div><span class="go"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="d2-row"><span class="num">3</span><div><strong>Hearst</strong><span class="role">Associate PM · 2024</span></div><span class="form-line">Pricing · AI scheduling · comics pitch</span><div class="metric"><span class="num">$9M</span><small>deal supported</small></div><span class="go"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="d2-row"><span class="num">4</span><div><strong>ProductSC</strong><span class="role">President · 2023–25</span></div><span class="form-line">3 curricula · MRSO · Amazon, Disney, Riot</span><div class="metric"><span class="num">40×</span><small>membership growth</small></div><span class="go"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="d2-row"><span class="num">5</span><div><strong>FEMO</strong><span class="role">Founder · 2020–24</span></div><span class="form-line">20 universities · 4 countries</span><div class="metric"><span class="num">400+</span><small>volunteers</small></div><span class="go"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="d2-row"><span class="num">6</span><div><strong>Bizlang</strong><span class="role">Co-founder · 2023–24</span></div><span class="form-line">AI jargon tool · led 3 engineers</span><div class="metric"><span class="num">150+</span><small>users</small></div><span class="go"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="d2-live"><span><span class="live-dot"></span><strong>Race Day</strong> <span class="link-btn">· pick a horse and watch the field run</span></span><button class="btn btn-quiet">Go to the track</button></div>
+    </div>
+    <ul class="notes"><li>Fastest to scan: role, form, and best result line up in columns.</li><li>Very distinctive, but loses the streaming "poster" feel and the logos entirely.</li><li>On phones the columns would stack into one card per row.</li></ul>
+</section>
+
+<!-- ============ SHARED DETAIL VIEW ============ -->
+<section class="direction" id="detail">
+    <div class="dir-label"><span class="n">↳</span><h2>Detail view (either direction)</h2></div>
+    <p class="dir-why">Replaces the boxed episode list with a ruled "form guide": number, what happened, and the result in serif numerals on the right.</p>
+    <p class="frame-title">HBO Max, opened from Recruiter</p>
+    <div class="frame" style="--accent:var(--ice)">
+        <div class="detail">
+            <div class="detail-top">
+                <button class="icon-btn" aria-label="Close"><svg viewBox="0 0 16 16" fill="none"><path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                <span class="num big">01</span>
+                <p class="kicker" style="margin-top:14px">Product Manager · Warner Bros. Discovery · Aug 2025 – Present</p>
+                <h3>HBO Max</h3>
+                <p>I lead discovery and age-appropriate experiences for kids and teens on HBO Max. That means turning viewing data into product bets, partnering with legal on age rules around the world, and running experiments with 12M+ users.</p>
+            </div>
+            <div class="form-label"><span class="kicker">Form guide</span><span class="kicker">Result</span></div>
+            <ol class="form">
+                <li><span class="num">E1</span><span class="t">Search-to-discovery for kids</span><span class="m"><b>+12%</b>novel plays, +5.4% minutes</span></li>
+                <li><span class="num">E2</span><span class="t">Opening 4,000+ unrated titles to teens</span><span class="m"><b>+3%</b>hours watched</span></li>
+                <li><span class="num">E3</span><span class="t">A 4-tier age model for the world</span><span class="m"><b>186</b>genre tags mapped</span></li>
+                <li><span class="num">E4</span><span class="t">The teen rail</span><span class="m"><b>+17%</b>projected lift</span></li>
+                <li><span class="num">E5</span><span class="t">Experiments at scale</span><span class="m"><b>5</b>A/B tests, 12M+ users</span></li>
+                <li><span class="num">E6</span><span class="t">Going global</span><span class="m"><b>11</b>new markets</span></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- ============ PHONE ============ -->
+<section class="direction" id="mobile">
+    <div class="dir-label"><span class="n">↳</span><h2>Direction 1 on a phone</h2></div>
+    <p class="frame-title">390px wide</p>
+    <div class="phone" style="--accent:var(--ice)">
+        <div class="bar"><span class="who">Watching as Recruiter</span><button class="link-btn">Switch</button></div>
+        <div class="d1-feature">
+            <div class="art"><span class="wordmark">HBO Max</span></div>
+            <div>
+                <div class="d1-meta"><span class="num">No. 01</span><span class="kicker">Product Manager</span></div>
+                <h3>HBO Max</h3>
+                <div class="stats"><div><span class="num">+12%</span><small>novel plays</small></div><div><span class="num">+5.4%</span><small>minutes</small></div><div><span class="num">4,000+</span><small>titles</small></div></div>
+                <div class="d1-actions"><button class="btn btn-primary"><svg viewBox="0 0 16 16"><path d="M4 2.8v10.4L13 8 4 2.8Z" fill="currentColor"/></svg>View the work</button></div>
+            </div>
+        </div>
+        <div class="section-row"><h4>Top picks</h4></div>
+        <div class="d1-grid">
+            <div class="card"><div class="art"><span class="wordmark">kroot</span></div><div class="card-body"><span class="num">02</span><strong>Kroot</strong><span class="role">Founder · 2026</span><span class="metric"><b>3,000+</b> recruiting signals</span></div></div>
+        </div>
+    </div>
+</section>
+
+</div>
+</body>
+</html>

@@ -124,20 +124,20 @@
 
     const fillOverlay = (d) => {
         overlayCard.style.setProperty("--pc", d.accent);
-        $("#overlay-band").style.setProperty("--pc", d.accent);
         const banner = $("#overlay-banner");
         banner.textContent = d.banner || "";
         banner.hidden = !d.banner;
+        $("#overlay-num").textContent = d.num || "";
         $("#overlay-kicker").textContent = d.kicker;
         $("#overlay-title").textContent = d.title;
         $("#overlay-desc").textContent = d.desc;
-        $("#overlay-tags").replaceChildren(...d.tags.map((t) => make("span", "tag", t)));
+        $("#overlay-tags").textContent = d.tags.join(" · ");
         $("#overlay-episodes").replaceChildren(
             ...d.episodes.map((e, i) => {
                 const li = make("li");
                 const num = make("span", "ep-num", `E${i + 1}`);
                 num.setAttribute("aria-hidden", "true");
-                li.append(num, make("strong", null, e.title), make("span", "ep-metric", e.metric));
+                li.append(num, make("strong", "ep-title", e.title), make("span", "ep-metric", e.metric));
                 return li;
             })
         );

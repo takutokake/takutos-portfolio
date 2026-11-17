@@ -38,7 +38,8 @@
     }
 
     const RACE_MS = 10000;
-    const HORSE_PX = 32;
+    const HORSE_PX = 30;
+    const BACK_ICON = `<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const PLACES = ["1st", "2nd", "3rd", "4th", "5th", "6th"];
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -62,10 +63,15 @@
         let winnerTimer = null;
 
         const wrap = el("div", "race");
-        const back = button("tp-switch", "← Back to home");
+        const back = button("tp-link");
+        const tpl = document.createElement("template");
+        tpl.innerHTML = BACK_ICON;
+        back.append(tpl.content, "Back to home");
         back.addEventListener("click", onBack);
+        const live = el("p", "race-live");
+        live.append(el("span", "tp-live-dot"), "Live · Today's card");
         const head = el("div", "race-head");
-        head.append(el("span", "race-live", "Live"), el("h3", "race-title", "Race Day"), back);
+        head.append(live, back);
 
         const prompt = el("p", "race-prompt", "Pick your horse.");
         const status = el("p", "race-status");
@@ -85,10 +91,11 @@
                 place,
                 el("span", "race-form", `${t.name} · ${t.horse.form}`)
             );
-            const horse = el("span", "race-horse", "🏇");
+            const horse = el("span", "race-horse", String(i + 1));
             horse.setAttribute("aria-hidden", "true");
             const run = el("div", "race-run");
-            run.append(horse, el("span", "race-finish"));
+            run.setAttribute("aria-hidden", "true");
+            run.append(horse);
             lane.append(pick, run);
             return { id, lane, pick, place, horse };
         });
@@ -147,7 +154,13 @@
             lanes[0].pick.focus();
         });
 
-        wrap.append(head, el("p", "race-intro", C.race.intro), prompt, track, status, again);
+        const title = el("h3", "race-title", "Race ");
+        title.append(el("span", "accent-serif", "Day"));
+        const cols = el("div", "race-cols");
+        cols.setAttribute("aria-hidden", "true");
+        cols.append(el("span", null, "No. · Entry"), el("span", null, "Finish"));
+        track.prepend(cols);
+        wrap.append(head, title, el("p", "race-intro", C.race.intro), prompt, track, status, again);
         container.append(wrap);
         lanes[0].pick.focus({ preventScroll: true });
     };

@@ -83,12 +83,12 @@
 
             <div class="tp-app" id="tp-app">
                 <div class="tp-fallback">
-                    <article class="tp-fallback-card"><img src="images/hbo-max-logo.webp" alt="HBO Max logo"/><h3>HBO Max</h3><p>Product Manager, Warner Bros. Discovery. Helping kids and teens find what to watch next.</p></article>
-                    <article class="tp-fallback-card"><img src="images/kroot-logo.png" alt="Kroot logo"/><h3>Kroot</h3><p>Founder. A student recruiting OS: a free job board plus a CRM that tracks applications from Gmail.</p></article>
-                    <article class="tp-fallback-card"><img src="images/ProductSC-logo-website.png" alt="ProductSC logo"/><h3>ProductSC</h3><p>President. Grew USC's product club from 5 to 200+ members.</p></article>
-                    <article class="tp-fallback-card"><img src="images/hearst-logo.jpg" alt="Hearst logo"/><h3>Hearst</h3><p>Associate Product Manager. Pricing, AI scheduling, and a comic fan app pitch.</p></article>
-                    <article class="tp-fallback-card"><img src="images/femo-logo.png" alt="FEMO logo"/><h3>FEMO</h3><p>Founder. English mentorship for students heading abroad, across 20 universities.</p></article>
-                    <article class="tp-fallback-card"><img src="images/bizlang-website-logo.png" alt="Bizlang logo"/><h3>Bizlang</h3><p>Co-founder. An AI tool that teaches workplace jargon to non-native English speakers.</p></article>
+                    <article class="tp-fallback-card"><h3>HBO Max</h3><p>Product Manager, Warner Bros. Discovery. Helping kids and teens find what to watch next.</p></article>
+                    <article class="tp-fallback-card"><h3>Kroot</h3><p>Founder. A student recruiting OS: a free job board plus a CRM that tracks applications from Gmail.</p></article>
+                    <article class="tp-fallback-card"><h3>ProductSC</h3><p>President. Grew USC's product club from 5 to 200+ members.</p></article>
+                    <article class="tp-fallback-card"><h3>Hearst</h3><p>Associate Product Manager. Pricing, AI scheduling, and a comic fan app pitch.</p></article>
+                    <article class="tp-fallback-card"><h3>FEMO</h3><p>Founder. English mentorship for students heading abroad, across 20 universities.</p></article>
+                    <article class="tp-fallback-card"><h3>Bizlang</h3><p>Co-founder. An AI tool that teaches workplace jargon to non-native English speakers.</p></article>
                 </div>
             </div>
             <div class="tp-guestbook" id="tp-guestbook" hidden>
@@ -305,13 +305,16 @@
                 <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             </button>
             <div class="project-overlay-scroll">
-                <div class="project-overlay-band" id="overlay-band"></div>
-                <div class="project-overlay-body">
+                <div class="overlay-top">
                     <p class="overlay-banner" id="overlay-banner" hidden></p>
+                    <span class="overlay-num" id="overlay-num" aria-hidden="true"></span>
                     <p class="overlay-kicker" id="overlay-kicker"></p>
                     <h3 id="overlay-title"></h3>
-                    <div class="overlay-tags" id="overlay-tags"></div>
                     <p class="overlay-desc" id="overlay-desc"></p>
+                    <p class="overlay-tags" id="overlay-tags"></p>
+                </div>
+                <div class="project-overlay-body">
+                    <p class="overlay-form-head" aria-hidden="true"><span>Form guide</span><span>Result</span></p>
                     <ol class="overlay-episodes" id="overlay-episodes" aria-label="Episodes"></ol>
                 </div>
             </div>
